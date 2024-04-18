@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/styles/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <main class="main__container">
+        <form action="" class="main__form">
+            <h1 class="form__title">SIGN IN</h1>
+                <section class="container-inputs user__container">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="text" placeholder="user" required id="userInput">
+                </section>
+                <section class="container-inputs password__container">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="text" placeholder="password" required id="passwordInput">
+                    <article class="container__others">
+                        <div class="containerRemember">
+                            <input type="checkbox" required>
+                            <span>Remember me</span>
+                        </div>
+                        <div class="containerForgot">
+                            <button class="button__forgot">forgot password?</button>
+                        </div>
+                    </article>
+                </section>
+                <span id="credentialsIncorrects">El correo electronico o la contraseña no son validos</span>
+                <section class="callToActionContainer">
+                    <button class="callToActionButton" id="buttonLogin">Login</button>
+                </section>
+                <section class="containerSignUpAction">
+                    <a href="signUp.html" class="signUpActionButton">Don’t have a Account? <span>Sign up</span></a>
+                </section>
+        </form>
+    </main>
+    <script src="../static/controllers/main.js" type="module"></script>
+</body>
+</html>

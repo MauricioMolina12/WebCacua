@@ -1,0 +1,247 @@
+@import url(../styles/stylesGenerals.css);
+@import url(../styles/animation.css);
+
+body{
+    display: flex;
+}
+
+
+.column__bar{
+    background-color: var(--secondColor);
+    width: 5%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    transition: .5s ease;
+    z-index: 999;
+    border-radius: 0 10px 10px 0;
+}
+
+button{
+    cursor: pointer;
+}
+
+.column__bar .column__bar__title{
+    position: absolute;
+    top: 10px;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.column__bar .column__bar__title span{
+    color: var(--secondColor);
+    background-color: white;
+    border-radius: 5px;
+    padding: 0 3px;
+}
+
+.column__bar .column__bar__items{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    bottom: 0;
+}
+
+.column__bar .column__bar__items div{
+    width: 100%;
+    height: auto;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.column__bar .column__bar__items .buttonOut{
+    position: absolute;
+    bottom: 0;
+}
+
+.column__bar .column__bar__items div > span{
+    width: 50%;
+    color: white;
+    display: none;
+}
+
+.column__bar .column__bar__items div > button{
+    width: 30%;
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+
+.column__bar .column__bar__items div button i{
+    font-size: 2rem;
+}
+
+.column__bar:hover .labels{
+    display: block;
+}
+
+.column__bar:hover{
+    width: 10%;
+    transition: .5s ease;
+}
+
+.mainContainer{
+    width: 95%;
+    height: 100vh;
+    z-index: 998;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+.mainContainer__description{
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+
+.mainContainer .mainContainer__dashboard{
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.mainContainer .mainContainer__dashboard .mainContainer__dashboard__inputs{
+    width: 100%;
+    height: 5vh;
+}
+
+.mainContainer__dashboard__inputs .head__container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.head__container .buttonNewCompany{
+    height: 100%;
+    padding: 0 10px;
+    background-color: var(--mainColor);
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+}
+
+.input__container{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--secondColor);
+    border-radius: 10px;
+}
+
+.input__container input{
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+    border: none;
+    border-radius: 10px;
+}
+
+.input__container input:focus{
+    outline: 1px solid var(--secondColor);
+}
+
+.input__container i{
+    position: absolute;
+    left: 10px;
+}
+
+.input__container span{
+    position: absolute;
+    right: 20%;
+}
+
+.input__container select{
+    position: absolute;
+    right: 30px;
+    width: 15%;
+    height: 90%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: .5s ease;
+}
+
+.mainContainer__dashboard .scroll-container{
+    width: 75%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.scroll-container::-webkit-scrollbar{
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb{
+    background-color: var(--secondColor);
+    width: 10px;
+    border-radius: 10px;
+}
+
+.scroll-container .card{
+    width: 90%;
+    height: 20vh;
+    box-shadow: 3px 3px 10px #ccc, -3px -3px 10px #ccc;
+    border-radius: 10px;
+    margin: 20px;
+    min-height: 16vh;
+    display: flex;
+    padding: 10px;
+}
+
+.scroll-container .card .chart{
+    width: 50%;
+    height: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    padding-left: 20px;
+}
+
+.scroll-container .card .chart:first-of-type::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 50%;
+    width: 2px;
+    background-color: #ccc;
+}
+
+.scroll-container .card .chart div{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.scroll-container .card .chart div > *{
+    width: 50%;
+}
+

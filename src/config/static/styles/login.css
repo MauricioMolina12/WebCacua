@@ -1,0 +1,141 @@
+@import url(../styles/stylesGenerals.css);
+@import url(../styles/animation.css);
+
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn .5s ease;
+}
+
+.main__container{
+    width: 60%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--mainColor);
+    box-shadow: 5px 5px 10px #ccc;
+    border-radius: 20px;
+}
+
+.main__container form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+button{
+    cursor: pointer;
+}
+
+.container-inputs{
+    width: 30%;
+    height: 8%;
+    border-radius: 10px;
+    display: flex;
+    position: relative;
+}
+
+.container-inputs input:not([type="checkbox"]){
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    padding-left: 50px;
+    border: 0.5px solid var(--mainColor);
+    outline: 0.5px solid var(--mainColor);
+}
+
+.container-inputs input::placeholder{
+    color: var(--mainColor);
+    font-size: 120%;
+}
+
+
+.container-inputs i{
+    position: absolute;
+    font-size: 1rem;
+    top: 35%;
+    left: 20px;
+}
+
+.password__container{
+    position: relative;
+}
+
+.password__container .container__others{
+    position: absolute;
+    bottom: -100%;
+    display: flex;
+    width: 100%;
+}
+
+.container__others div{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 90%;
+}
+
+.container__others .containerForgot{
+    justify-content: end;
+}
+
+.containerForgot .button__forgot{
+    background-color: transparent;
+    border: none;
+    color: var(--mainColor);
+    font-weight: 600;
+}
+
+.callToActionContainer{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    height: 4.5vh;
+}
+
+.callToActionContainer .callToActionButton{
+    width: 70%;
+    background-color: var(--mainColor);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    transition: .5s ease;
+}
+
+.callToActionContainer .callToActionButton:hover{
+    background-color: var(--hoverColor);
+    transition: .5s ease;
+}
+
+.containerSignUpAction a{
+    text-decoration: none;
+    color: var(--mainColor);
+}
+
+.containerSignUpAction a span{
+    font-weight: 800;
+}
+
+#credentialsIncorrects{
+    color: red;
+    font-size: .8rem;
+    margin-top: 40px;
+    background-color: #f3f3f3;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    transition: 1s ease;
+}
+
+#credentialsIncorrects.active{
+    display: block;
+    transition: 1s ease;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNOVATESHOP</title>
+    <link rel="stylesheet" href="../static/styles/homePage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <aside class="column__bar" id="columnBar">
+        <h1 class="column__bar__title">
+            I<span>S</span>
+        </h1>
+        <section class="column__bar__items">
+            <div class="buttonHome">
+                <button class="homeButton buttons">
+                    <i class="fa-solid fa-home"></i>
+                </button>
+                <span class="labels">Home</span>
+            </div>
+            <div class="buttonCategories">
+                <button class="categoriesButton buttons">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <span class="labels">Categories</span>
+            </div>
+            <div class="buttonOut">
+                <button class="categoriesButton buttons">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </button>
+                <span class="labels">Sign out</span>
+            </div>
+        </section>
+    </aside>
+    <main class="mainContainer">
+        <span class="mainContainer__description">You’re Administrador</span>
+        <section class="mainContainer__dashboard">
+            <div class="mainContainer__dashboard__inputs">
+                <div class="head__container">
+                    <div class="input__container">
+                        <input type="text" placeholder="Search company">
+                        <i class="fa-solid fa-search"></i>
+                        <span>|</span>
+                        <select name="" id="">
+                            <option value="">name</option>
+                            <option value="">categories</option>
+                        </select>
+                    </div>
+                    <button class="buttonNewCompany">New Company</button>
+                </div>
+            </div>
+            <article class="scroll-container">
+                <div class="card" id="card">
+                    <div class="chart__left chart">
+                        <div class="chart__name">
+                            <h4>Name</h4>
+                            <span>Juan Valdez</span>
+                        </div>
+                        <div class="chart__ubication">
+                            <h4>Ubication</h4>
+                            <span>Barranquilla.Atlantico</span>
+                        </div>
+                        <div class="chart__time">
+                            <h4>Time</h4>
+                            <span>3 month</span>
+                        </div>
+                        <div class="chart__email">
+                            <h4>Correo</h4>
+                            <span>JuanValdez@cafe.com.co</span>
+                        </div>
+                    </div>
+                    <div class="chart__right chart">
+                        <div class="chart__nit">
+                            <h4>NIT</h4>
+                            <span>800-542-2342</span>
+                        </div>
+                        <div class="chart__status">
+                            <h4>Status</h4>
+                            <span>Active</span>
+                        </div>
+                        <div class="chart__modules">
+                            <h4>Modules</h4>
+                            <span>5</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+    <script src="../static/controllers/homePage.js"></script>
+</body>
+</html>

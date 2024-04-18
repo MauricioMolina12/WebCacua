@@ -1,0 +1,152 @@
+@import url(../styles/stylesGenerals.css);
+@import url(../styles/animation.css);
+
+
+body{
+    animation: fadeIn .5s ease;
+    overflow-y: hidden;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    height: 13vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    transition: .5s;
+}
+
+.header__title{
+    color: var(--secondColor);
+    font-size: 200%;
+}
+
+.header__title span{
+    color: var(--mainColor);
+}
+
+.header__button{
+    background-color: var(--mainColor);
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    width: fit-content;   
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.main{
+    height: 87vh;
+    display: flex;
+}
+
+.main__child{
+    height: 100%;
+    width: 50%;
+}
+
+.main__description{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding-left: 70px;
+}
+
+.main__description__title{
+    font-size: 280%;
+    width: 50%;
+    transition: .5s ease;
+}
+
+.main__description__title span{
+    color: var(--mainColor);
+}
+
+.main__description__button{
+    background-color: var(--secondColor);
+    width: fit-content;
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 100%;
+}
+
+.main__description__button i{
+    animation: motionArrow 1s ease infinite both;
+}
+
+.main__heroImage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main__heroImage .containerImage{
+    width: 70%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main__heroImage .containerImage img{
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+@media (max-width: 1024px){
+
+    .main__description__title{
+        font-size: 200%;
+    }
+
+    
+}
+
+
+@media (max-width: 768px){
+    .main{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main__description__title{
+        font-size: 180%;
+    }
+
+    .main__heroImage .containerImage{
+        width: 100%;
+        height: 100%;
+    }
+
+        
+}
+
+
+@media (max-width: 440px){
+
+    .header{
+        flex-direction: column;
+        border: 1px solid white;
+        height: 18vh;
+    }
+
+    .header__button{
+        width: 50%;   
+        text-align: center;
+    }
+
+    .main{
+        height: 87vh;
+        display: flex;
+        flex-direction: column;
+    }
+}
