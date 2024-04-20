@@ -1,3 +1,4 @@
+
 const d = document,
       w = window
 
@@ -32,12 +33,39 @@ const d = document,
             modules: 0
         },
         {
-            name: "Mc Donalds",
+            name: "Adidas",
             ubication: "Barranquilla,Atlantico",
-            time: "4 month",
-            correo: "McDonalds@gmail.com",
+            time: "25 month",
+            correo: "adidas@gmail.com",
             nit: '800-653-24-43',
             status: false,
+            modules: 0
+        },
+        {
+            name: "Olimpica",
+            ubication: "Barranquilla,Atlantico",
+            time: "4 month",
+            correo:  "Olimpica@gmail.com",
+            nit: '800-653-24-43',
+            status: true,
+            modules: 0
+        },
+        {
+            name: "Éxito",
+            ubication: "Barranquilla,Atlantico",
+            time: "4 month",
+            correo: "exito@gmail.com",
+            nit: '800-653-24-43',
+            status: true,
+            modules: 0
+        },
+        {
+            name: "Nike",
+            ubication: "Barranquilla,Atlantico",
+            time: "4 month",
+            correo: "nike@gmail.com",
+            nit: '800-653-24-43',
+            status: true,
             modules: 0
         }
         
@@ -47,28 +75,35 @@ const d = document,
         w.location.href = route;
     }
 
-    export function getData(templateID,scrollContainerID){
-        let template = d.getElementById(templateID).content.cloneNode(true);
-        var fragment = d.createDocumentFragment();
-        var scrollContainer = d.getElementById(scrollContainerID);
-        companies.forEach(company=>{
-            //values 
-            template.querySelector('#card__name').textContent = company.name;
-            template.querySelector('#card__ubication').textContent = company.ubication;
-            template.querySelector('#card__time').textContent = company.time;
-            template.querySelector('#card__email').textContent = company.correo;
-            template.querySelector('#card__nit').textContent = company.nit;
-            if(company.status == true){
-                template.querySelector('#card__active').innerHTML = 'Active' + '<i class="fa-solid fa-check checkGood"></i>';
-            }else{
-                template.querySelector('#card__active').innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
-            }
-            template.querySelector('#card__modules').textContent = company.modules;
+    export function getData(templateID, scrollContainerID) {
+        let template = document.getElementById(templateID).content.cloneNode(true);
+        let fragment = document.createDocumentFragment();
+        let scrollContainer = document.getElementById(scrollContainerID);
+        
+        companies.forEach(company => {
             let clone = template.cloneNode(true);
+            clone.querySelector('#card__name').textContent = company.name;
+            clone.querySelector('#card__ubication').textContent = company.ubication;
+            clone.querySelector('#card__time').textContent = company.time;
+            clone.querySelector('#card__email').textContent = company.correo;
+            clone.querySelector('#card__nit').textContent = company.nit;
+            clone.querySelector('#card__modules').textContent = company.modules;
+    
+            let activeElement = clone.querySelector('#card__active');
+            if (company.status == true) {
+                activeElement.innerHTML = 'Active' + '<i class="fa-solid fa-square-check checkGood"></i>';
+            } else {
+                activeElement.innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
+            }
+    
             fragment.appendChild(clone);
-        })
+        });
+
+        scrollContainer.innerHTML = '';
         scrollContainer.appendChild(fragment);
-        return companies;
+    
+
+        return scrollContainer;
     }
 
 
@@ -121,7 +156,6 @@ const d = document,
                 getCompanies();
             }
         });
-        buttonCompany.addEventListener("click",showNewCompanyForm);
     }
 
     
@@ -129,7 +163,7 @@ const d = document,
         let buttonExit = d.getElementById(buttonExitID);
 
         buttonExit.addEventListener("click",e=>{
-            routesGo('../../../../src/config/templates/index.html')
+            routesGo('../../../../src/config/templates/login.html')
         })
     }
 
@@ -160,42 +194,106 @@ const d = document,
 
     export function searchCompany(inputId) {
         const input = document.getElementById(inputId);
-        const valueInput = input.value;
+        const scrollContainer = document.getElementById('scrollContainer');
+        const template = document.getElementById('template-card');
     
         input.addEventListener("input", () => {
-            const filteredCompanies = companies.filter(company => company.name.toLowerCase().includes(valueInput.toLowerCase()));
+            const valueInput = input.value.toLowerCase().trim();
+            const filteredCompanies = companies.filter(company => company.name.toLowerCase().includes(valueInput));
     
             if (filteredCompanies.length > 0) {
                 const fragment = document.createDocumentFragment();
+                scrollContainer.innerHTML = "";
+    
                 filteredCompanies.forEach(company => {
-                    let clone = template.cloneNode(true);
+                    let clone = template.content.cloneNode(true);
                     clone.querySelector('#card__name').textContent = company.name;
                     clone.querySelector('#card__ubication').textContent = company.ubication;
                     clone.querySelector('#card__time').textContent = company.time;
                     clone.querySelector('#card__email').textContent = company.correo;
                     clone.querySelector('#card__nit').textContent = company.nit;
-                    if (company.status == true) {
-                        clone.querySelector('#card__active').innerHTML = 'Active' + '<i class="fa-solid fa-check checkGood"></i>';
-                    } else {
-                        clone.querySelector('#card__active').innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
-                    }
                     clone.querySelector('#card__modules').textContent = company.modules;
+    
+                    let activeElement = clone.querySelector('#card__active');
+                    if (company.status == true) {
+                        activeElement.innerHTML = 'Active' + '<i class="fa-solid fa-check checkGood"></i>';
+                    } else {
+                        activeElement.innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
+                    }
+    
                     fragment.appendChild(clone);
                 });
-                scrollContainer.innerHTML = "";
+    
                 scrollContainer.appendChild(fragment);
             } else {
-                scrollContainer.innerHTML = '<span>No hay coincidencias</span>';
-            }
+                const contentNot = `
+                  '<img class="imgPlanta" src="../static/assets/animationPlanta.png">',
+                  '<span class="text">No hay coincidencias</span>'
+                `
+                scrollContainer.classList.add('flex');
+                scrollContainer.innerHTML = contentNot;
+                scrollContainer.querySelector('.imgPlanta').classList.add('imgPlanta');
+              }
+              
+
+            ;
+        });
+    }
+
+    export function getCompanies(templateID, scrollContainerID) {
+        let template = d.getElementById(templateID).content.cloneNode(true);
+        let chartView = d.querySelector(scrollContainerID);
+        let fragment = d.createDocumentFragment();
+
+        chartView.innerHTML = '';
+
+        companies.forEach(company => {
+            let clone = template.cloneNode(true);
+            clone.querySelector('.nameValue').textContent = company.name;
+            clone.querySelector('.nitValue').textContent = company.nit;
+            fragment.appendChild(clone);
+        });
+
+        chartView.appendChild(fragment);
+    }
+
+    export function addModule(buttonAddMethod){
+        const buttonsModule = d.querySelectorAll(buttonAddMethod);
+    
+        buttonsModule.forEach(button => {
+            button.addEventListener("click", e => {
+                const form = `
+                    <div class="flex">
+                        <select>
+                            <option>Modulo 1</option>
+                            <option>Modulo 2</option>
+                            <option>Modulo 3</option>
+                            <option>Modulo 4</option>
+                        </select>
+                    </div>
+                `;
+    
+                Swal.fire({
+                    title: 'Add new module',
+                    html: form,
+                    showCancelButton: true,
+                    confirmButtonText: 'Add module',
+                    cancelButtonText: 'Cancel',
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        const selectedCompanyIndex = 0; 
+                        const selectedCompany = companies[selectedCompanyIndex];
+                        
+                        selectedCompany.modules++;
+    
+                        getCompanies();
+                    }
+                });
+            });
         });
     }
     
-    
 
-
-
-
-    
 
     switchTab('Home');
 

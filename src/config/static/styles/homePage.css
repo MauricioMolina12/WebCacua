@@ -118,7 +118,10 @@ button{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    z-index: 998;
 }
+
+
 
 .mainContainer .mainContainer__dashboard .mainContainer__dashboard__inputs{
     width: 100%;
@@ -229,6 +232,16 @@ button{
     border-radius: 10px;
 }
 
+.scroll-container.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text{
+    font-size: 2.2rem;
+}
+
 .scroll-container .card{
     width: 90%;
     height: 20vh;
@@ -238,6 +251,7 @@ button{
     min-height: 16vh;
     display: flex;
     padding: 10px;
+    justify-content: end;
 }
 
 .scroll-container .card .chart{
@@ -271,12 +285,10 @@ button{
 }
 
 .checkGood{
-    margin-left: 20px;
-    background-color: green;
-    color: white;
+    margin-left: 30px;
+    color: green;
     padding: 3px;
-    border-radius: 50%;
-    font-size: 80%;
+    font-size: 120%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -479,4 +491,60 @@ select:not([data="not"]) {
     outline: none;
     color: var(--secondColor);
     font-weight: 700;
+}
+
+.imgPlanta {
+    position: relative;
+    animation: parallax 2s linear infinite;
+  }
+  
+  @keyframes parallax {
+    0% {
+      transform: translateY(0) perspective(100px);
+    }
+  
+    50% {
+      transform: translateY(-50px) perspective(200px);
+    }
+  
+    100% {
+      transform: translateY(0) perspective(100px);
+    }
+  }
+  
+
+  .loaderContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    opacity: .5;
+}
+
+.loaderContainer .loader{
+    border: 8px solid #f3f3f3; 
+    border-top: 8px solid var(--secondColor);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    animation: loader 1s linear infinite;
+}
+
+
+@keyframes loader {
+    0%{
+        transform: rotate(0deg);
+    }
+
+    100%{
+        transform: rotate(360deg);
+    }
 }
