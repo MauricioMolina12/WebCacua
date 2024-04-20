@@ -31,7 +31,7 @@ export function validateLogin(emailInput,passwordInput,buttonLogin){
             }
         });
         if (credentialsCorrect) {
-                w.location.href = "../templates/homePage.html";
+                w.location.href = "../../../../src/config/templates/homePage.html";
         } else {
             alert.classList.add('active')
             setTimeout(() => {

@@ -12,82 +12,117 @@
         <h1 class="column__bar__title">
             I<span>S</span>
         </h1>
-        <section class="column__bar__items">
-            <div class="buttonHome">
+        <section class="column__bar__items tab-links">
+            <div class="buttonHome tab-link buttonActive">
                 <button class="homeButton buttons">
                     <i class="fa-solid fa-home"></i>
                 </button>
                 <span class="labels">Home</span>
             </div>
-            <div class="buttonCategories">
+            <div class="buttonCategories tab-link buttonActive">
                 <button class="categoriesButton buttons">
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <span class="labels">Categories</span>
             </div>
             <div class="buttonOut">
-                <button class="categoriesButton buttons">
+                <button id="signOut" class="categoriesButton buttons">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 </button>
-                <span class="labels">Sign out</span>
+                <span  class="labels">Sign out</span>
             </div>
         </section>
     </aside>
     <main class="mainContainer">
         <span class="mainContainer__description">You’re Administrador</span>
         <section class="mainContainer__dashboard">
-            <div class="mainContainer__dashboard__inputs">
-                <div class="head__container">
-                    <div class="input__container">
-                        <input type="text" placeholder="Search company">
+            <div id="Home-content" class="tab-content">
+                <div class="mainContainer__dashboard__inputs">
+                    <div class="head__container">
+                        <div class="input__container">
+                            <input type="text" placeholder="Search company" id="searchCompany">
+                            <i class="fa-solid fa-search"></i>
+                            <span>|</span>
+                            <select name="" data="not">
+                                <option value="">name</option>
+                                <option value="">categories</option>
+                            </select>
+                        </div>
+                        <button id="buttonCompany" class="buttonNewCompany">New Company</button>
+                    </div>
+                </div>
+                <article class="scroll-container" id="scrollContainer">
+                    <template id="template-card">
+                        <div class="card" id="card">
+                            <div class="chart__left chart">
+                                <div class="chart__name">
+                                    <h4 id="card__key__name">Name</h4>
+                                    <span id="card__name"></span>
+                                </div>
+                                <div class="chart__ubication">
+                                    <h4 id="card__key__ubication">Ubication</h4>
+                                    <span id="card__ubication"></span>
+                                </div>
+                                <div class="chart__time">
+                                    <h4 id="card__key__time">Time</h4>
+                                    <span id="card__time"></span>
+                                </div>
+                                <div class="chart__email">
+                                    <h4 id="card__key__time">Correo</h4>
+                                    <span id="card__email"></span>
+                                </div>
+                            </div>
+                            <div class="chart__right chart">
+                                <div class="chart__nit">
+                                    <h4 id="card__key__nit" >NIT</h4>
+                                    <span id="card__nit"></span>
+                                </div>
+                                <div class="chart__status">
+                                    <h4 id="card__key__status">Status</h4>
+                                    <span id="card__active"></span>
+                                </div>
+                                <div class="chart__modules">
+                                    <h4 id="card__key__modules">Modules</h4>
+                                    <span id="card__modules"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </article>
+            </div>
+            <section id="Categories-content" class="tab-content Categories-content" style="display: none;">
+                <article class="Categories__dashboard__inputs">
+                    <div class="head__categories">
+                        <input type="text" placeholder="Search">
                         <i class="fa-solid fa-search"></i>
                         <span>|</span>
-                        <select name="" id="">
+                        <select name="" data="not">
                             <option value="">name</option>
                             <option value="">categories</option>
                         </select>
                     </div>
-                    <button class="buttonNewCompany">New Company</button>
+                    <button id="buttonChanges" class="buttonSaveChanges">Save changes</button>
+                </article>
+                <div class="scrollContainerView">
+                    <template id="template-card__second">
+                        <section class="chartView">
+                            <article class="chartName">
+                                <div class="nameKey"><span>Name</span></div>
+                                <div id="nameValue" class="nameValue"></div>
+                            </article>
+                            <article class="chartNit">
+                                <div class="nitKey key"><span>NIT</span></div>
+                                <div id="nitValue" class="nitValue"></div>
+                            </article>
+                            <button class="addMethod" id="addMethod">Agregar Módulo</button>
+                        </section>
+                    </template>
                 </div>
-            </div>
-            <article class="scroll-container">
-                <div class="card" id="card">
-                    <div class="chart__left chart">
-                        <div class="chart__name">
-                            <h4>Name</h4>
-                            <span>Juan Valdez</span>
-                        </div>
-                        <div class="chart__ubication">
-                            <h4>Ubication</h4>
-                            <span>Barranquilla.Atlantico</span>
-                        </div>
-                        <div class="chart__time">
-                            <h4>Time</h4>
-                            <span>3 month</span>
-                        </div>
-                        <div class="chart__email">
-                            <h4>Correo</h4>
-                            <span>JuanValdez@cafe.com.co</span>
-                        </div>
-                    </div>
-                    <div class="chart__right chart">
-                        <div class="chart__nit">
-                            <h4>NIT</h4>
-                            <span>800-542-2342</span>
-                        </div>
-                        <div class="chart__status">
-                            <h4>Status</h4>
-                            <span>Active</span>
-                        </div>
-                        <div class="chart__modules">
-                            <h4>Modules</h4>
-                            <span>5</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
+            </section>
+            
         </section>
     </main>
-    <script src="../static/controllers/homePage.js"></script>
+    <script src="../static/controllers/main.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

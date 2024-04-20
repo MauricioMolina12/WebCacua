@@ -4,33 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../static/styles/login.css">
+    <link rel="stylesheet" href="../static/styles/signUp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 <body>
     <main class="main__container">
-        <form action="" class="main__form">
+        <form action="" class="main__form" id="signup-form">
             <h1 class="form__title">SIGN UP</h1>
-                <section class="container-inputs name__container">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" placeholder="name" required>
-                </section>
-                <section class="container-inputs user__container">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="text" placeholder="user" required>
-                </section>
-                <section class="container-inputs password__container">
-                    <i class="fa-solid fa-key"></i>
-                    <input type="text" placeholder="password" required>
-                </section>
-                <section class="callToActionContainer">
-                    <button class="callToActionButton">Sign Up</button>
-                </section>
-                <section class="containerSignUpAction">
-                    <a href="login.html" class="signUpActionButton">Do you already have an account?<span>Log in</span></a>
-                </section>
+            <section class="container-inputs name__container">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" placeholder="Name" id="name" required>
+                <small id="name-error" class="error-message"></small>
+            </section>
+            <section class="container-inputs user__container">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" placeholder="Email" id="email" required>
+                <small id="email-error" class="error-message"></small>
+            </section>
+            <section class="container-inputs password__container">
+                <i class="fa-solid fa-key"></i>
+                <input type="password" placeholder="Password" id="password" required>
+                <small id="password-error" class="error-message"></small>
+            </section>
+            <section class="callToActionContainer">
+                <button type="submit" class="callToActionButton">Sign Up</button>
+            </section>
+            <section class="containerSignUpAction">
+                <a href="login.html" class="signUpActionButton">Already have an account? <span>Log in</span></a>
+            </section>
         </form>
     </main>
+    <script src="../static/controllers/signUp.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

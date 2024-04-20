@@ -3,6 +3,7 @@
 
 body{
     display: flex;
+    overflow-y: hidden;
 }
 
 
@@ -86,6 +87,11 @@ button{
     display: block;
 }
 
+
+.column__bar__items div{
+    cursor: pointer;
+}
+
 .column__bar:hover{
     width: 10%;
     transition: .5s ease;
@@ -146,7 +152,7 @@ button{
     left: 0;
     display: flex;
     align-items: center;
-    border: 1px solid var(--secondColor);
+    border: 1px solid gray;
     border-radius: 10px;
 }
 
@@ -177,11 +183,31 @@ button{
     right: 30px;
     width: 15%;
     height: 90%;
-    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 13%;
     border: none;
-    outline: none;
-    transition: .5s ease;
+    height: 90%;
+    padding: 10px 20px; 
+    font-size: 1.2rem;
+    border-radius: 5px;
+    color: var(--secondColor);
+    cursor: pointer;
 }
+
+.input__container select:focus{
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.head__categories select:focus{
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
 
 .mainContainer__dashboard .scroll-container{
     width: 75%;
@@ -192,12 +218,12 @@ button{
     overflow-y: auto;
 }
 
-.scroll-container::-webkit-scrollbar{
+::-webkit-scrollbar{
     background-color: #ccc;
     border-radius: 10px;
 }
 
-.scroll-container::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb{
     background-color: var(--secondColor);
     width: 10px;
     border-radius: 10px;
@@ -217,7 +243,6 @@ button{
 .scroll-container .card .chart{
     width: 50%;
     height: 100%;
-    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -245,3 +270,213 @@ button{
     width: 50%;
 }
 
+.checkGood{
+    margin-left: 20px;
+    background-color: green;
+    color: white;
+    padding: 3px;
+    border-radius: 50%;
+    font-size: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkFalse{
+    margin-left: 20px;
+    background-color: white;
+    color: red;
+    padding: 2px;
+    border-radius: 50%;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"]:not(#searchCompany),
+select:not([data="not"]){
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box; 
+    font-size: 16px;
+}
+
+select:not([data="not"]) {
+    appearance: none; 
+    background-color: white; 
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="6" viewBox="0 0 12 6"><path fill="%23000000" fill-opacity=".54" d="M6 8l6 6H0z"/></svg>');
+    background-repeat: no-repeat; 
+    background-position: right 10px center;
+    padding-right: 30px; 
+}
+
+
+.confirmButton{
+    background-color: var(--mainColor);
+}
+
+
+.Categories-content__dashboard__inputs{
+    width: 100%;
+    height: 5vh;
+}
+
+
+.buttonActive.active{
+    background-color: white;
+    border-radius: 50px 0 0 50px;
+    padding: 10px;
+    margin: 10px;
+}
+
+
+.buttonActive{
+    position: relative;
+
+}
+
+
+.buttonActive.active .labels,.buttonActive.active i{
+    color: var(--secondColor);
+    transition: 1s ease;
+}
+
+
+.Categories-content{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Categories-content .Categories__dashboard__inputs{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 30px;
+}
+
+.Categories-content .Categories__dashboard__inputs .head__categories{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.head__categories input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    text-indent: 30px;
+}
+
+.head__categories input::placeholder{
+    color: var(--secondColor);
+    color: gray;
+    font-size: 90%;
+}
+
+.head__categories .fa-search{
+    position: absolute;
+    left: 15px;
+}
+
+.head__categories span{
+    position: absolute;
+    right: 20%;
+}
+
+.head__categories select{
+    position: absolute;
+    right: 5%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 13%;
+    border: none;
+    height: 90%;
+    padding: 10px 20px; 
+    font-size: 1.1rem;
+    border-radius: 5px;
+    color: var(--secondColor);
+    cursor: pointer; 
+}
+
+.head__categories select:focus{
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.Categories__dashboard__inputs .buttonSaveChanges{
+    background-color: var(--mainColor);
+    border: none;
+    padding: 0 10px;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+}
+
+.scrollContainerView{
+    width: 60%;
+    height: 80%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.scrollContainerView .chartView{
+    width: 90%;
+    height: 20vh;
+    box-shadow: 3px 3px 10px #ccc, -3px -3px 10px #ccc;
+    border-radius: 10px;
+    margin: 20px;
+    min-height: 16vh;
+    display: flex;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.scrollContainerView .chartView > article{
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+
+.scrollContainerView .chartView > article > div{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.scrollContainerView .chartView > article > div > span{
+    font-weight: 700;
+}
+
+.chartView .addMethod{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--secondColor);
+    font-weight: 700;
+}
