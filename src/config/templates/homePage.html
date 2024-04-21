@@ -13,17 +13,41 @@
             I<span>S</span>
         </h1>
         <section class="column__bar__items tab-links">
-            <div class="buttonHome tab-link buttonActive">
+            <div id="buttonHome" class="buttonHome tab-link buttonActive">
                 <button class="homeButton buttons">
                     <i class="fa-solid fa-home"></i>
                 </button>
                 <span class="labels">Home</span>
             </div>
-            <div class="buttonCategories tab-link buttonActive">
+            <div id="buttonCategories" class="buttonCategories tab-link buttonActive">
                 <button class="categoriesButton buttons">
                     <i class="fa-solid fa-cubes"></i>
                 </button>
                 <span class="labels">Modules</span>
+            </div>
+            <div id="buttonEmpleoyees" class="buttonEmpleoyees tab-link buttonActive">
+                <button class="empleoyeesButton buttons">
+                    <i class="fa-solid fa-users"></i>
+                </button>
+                <span class="labels">Empleoyees</span>
+            </div>
+            <div id="buttonCustomers" class="buttonCustomers tab-link buttonActive">
+                <button class="customersButton buttons">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <span class="labels">Customers</span>
+            </div>
+            <div id="buttonProducts" class="buttonProducts tab-link buttonActive">
+                <button class="productsButton buttons">
+                    <i class="fa-solid fa-box"></i>
+                </button>
+                <span class="labels">Products</span>
+            </div>
+            <div id="buttonShop" class="buttonShop tab-link buttonActive">
+                <button class="shopButton buttons">
+                    <i class="fa-solid fa-shop"></i>
+                </button>
+                <span class="labels">Shopping</span>
             </div>
             <div class="buttonOut">
                 <button id="signOut" class="categoriesButton buttons">
@@ -34,9 +58,260 @@
         </section>
     </aside>
     <main class="mainContainer">
-        <span class="mainContainer__description">You’re Administrador</span>
+        <span class="mainContainer__description" id="userRole"></span>
         <section class="mainContainer__dashboard">
             <div id="Home-content" class="tab-content">
+                <div class="mainContainer__dashboard__inputs">
+                    <div class="head__container">
+                        <div class="input__container">
+                            <input type="text" placeholder="Search company" id="searchCompany">
+                            <i class="fa-solid fa-search"></i>
+                            <span>|</span>
+                            <select name="" data="not">
+                                <option value="">Name</option>
+                                <option value="">Nit</option>
+                            </select>
+                        </div>
+                        <button id="buttonCompany" class="buttonNewCompany">New Company</button>
+                    </div>
+                </div>
+                <article class="scroll-container" id="scrollContainer">
+                    <template id="template-card">
+                        <div class="card" id="card">
+                            <div class="chart__left chart">
+                                <div class="chart__name">
+                                    <h4 id="card__key__name">Name</h4>
+                                    <span id="card__name"></span>
+                                </div>
+                                <div class="chart__ubication">
+                                    <h4 id="card__key__ubication">Ubication</h4>
+                                    <span id="card__ubication"></span>
+                                </div>
+                                <div class="chart__time">
+                                    <h4 id="card__key__time">Time</h4>
+                                    <span id="card__time"></span>
+                                </div>
+                                <div class="chart__email">
+                                    <h4 id="card__key__correo">Correo</h4>
+                                    <span id="card__email"></span>
+                                </div>
+                            </div>
+                            <div class="chart__right chart">
+                                <div class="chart__nit">
+                                    <h4 id="card__key__nit" >NIT</h4>
+                                    <span id="card__nit"></span>
+                                </div>
+                                <div class="chart__status">
+                                    <h4 id="card__key__status">Status</h4>
+                                    <span id="card__active"></span>
+                                </div>
+                                <div class="chart__modules">
+                                    <h4 id="card__key__modules">Modules</h4>
+                                    <span id="card__modules"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </article>
+            </div>
+            <section id="Categories-content" class="tab-content Categories-content">
+                <article class="Categories__dashboard__inputs">
+                    <div class="head__categories">
+                        <input type="text" placeholder="Search">
+                        <i class="fa-solid fa-search"></i>
+                        <span>|</span>
+                        <select name="" data="not">
+                            <option value="">name</option>
+                            <option value="">categories</option>
+                        </select>
+                    </div>
+                    <button id="buttonChanges" class="buttonSaveChanges">Save changes</button>
+                </article>
+                <div class="scrollContainerView">
+                    <template id="template-card__second">
+                        <section class="chartView">
+                            <article class="chartName">
+                                <div class="nameKey"><span>Name</span></div>
+                                <div id="nameValue" class="nameValue"></div>
+                            </article>
+                            <article class="chartNit">
+                                <div class="nitKey key"><span>NIT</span></div>
+                                <div id="nitValue" class="nitValue"></div>
+                            </article>
+                            <button class="addMethod" id="addMethod">Agregar Módulo</button>
+                        </section>
+                    </template>
+                </div>
+            </section>
+            <div id="Empleoyees-content" class="tab-content">
+                <div class="mainContainer__dashboard__inputs">
+                    <div class="head__container">
+                        <div class="input__container">
+                            <input type="text" placeholder="Search Empleoyees" id="searchCompany">
+                            <i class="fa-solid fa-search"></i>
+                            <span>|</span>
+                            <select name="" data="not">
+                                <option value="">Name</option>
+                                <option value="">CC</option>
+                            </select>
+                        </div>
+                        <button id="buttonNewEmpleoyees" class="buttonCompany">New Empleoyees</button>
+                    </div>
+                </div>
+                <article class="scroll-container" id="scrollContainerEmpleoyee">
+                    <template id="template-card-Empleoyee">
+                        <div class="card" id="card">
+                            <div class="chart__left chart">
+                                <div class="chart__name">
+                                    <h4 id="card__key__name">Name</h4>
+                                    <span id="card__nameEmpleoyee"></span>
+                                </div>
+                                <div class="chart__lastName">
+                                    <h4 id="card__key__lastName">LastName</h4>
+                                    <span id="card__lastNameEmpleoyee"></span>
+                                </div>
+                                <div class="chart__time">
+                                    <h4 id="card__key__time">Time</h4>
+                                    <span id="card__timeEmpleoyee"></span>
+                                </div>
+                                <div class="chart__email">
+                                    <h4 id="card__key__correo">Correo</h4>
+                                    <span id="card__emailEmpleoyee"></span>
+                                </div>
+                            </div>
+                            <div class="chart__right chart">
+                                <div class="chart__cc">
+                                    <h4 id="card__key__cc" >CC</h4>
+                                    <span id="card__ccEmpleoyee"></span>
+                                </div>
+                                <div class="chart__status">
+                                    <h4 id="card__key__status">Status</h4>
+                                    <span id="card__activeEmpleoyee"></span>
+                                </div>
+                                <div class="chart__salary">
+                                    <h4 id="card__key__salary">Salary</h4>
+                                    <span id="card__salaryEmpleoyee"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </article>
+            </div>
+            <div id="Customers-content" class="tab-content">
+                <div class="mainContainer__dashboard__inputs">
+                    <div class="head__container">
+                        <div class="input__container">
+                            <input type="text" placeholder="Search customers" id="searchCompany">
+                            <i class="fa-solid fa-search"></i>
+                            <span>|</span>
+                            <select name="" data="not">
+                                <option value="">Name</option>
+                                <option value="">CC</option>
+                            </select>
+                        </div>
+                        <button id="buttonNewCustomers" class="buttonNewCustomers" style="display: none;">New Customer</button>
+                    </div>
+                </div>
+                <article class="scroll-container" id="scrollContainerCustomers">
+                    <template id="template-card-customers">
+                        <div class="card" id="card">
+                            <div class="chart__left chart">
+                                <div class="chart__name">
+                                    <h4 id="card__key__name">Name</h4>
+                                    <span id="card__nameCustomers"></span>
+                                </div>
+                                <div class="chart__lastName">
+                                    <h4 id="card__key__lastName">LastName</h4>
+                                    <span id="card__lastNameCustomers"></span>
+                                </div>
+                                <div class="chart__address">
+                                    <h4 id="card__key__address">Address</h4>
+                                    <span id="card__addressCustomers"></span>
+                                </div>
+                                <div class="chart__email">
+                                    <h4 id="card__key__correo">Correo</h4>
+                                    <span id="card__emailCustomers"></span>
+                                </div>
+                            </div>
+                            <div class="chart__right chart">
+                                <div class="chart__cc">
+                                    <h4 id="card__key__cc" >CC</h4>
+                                    <span id="card__ccCustomers"></span>
+                                </div>
+                                <div class="chart__phone">
+                                    <h4 id="card__key__phone">Phone</h4>
+                                    <span id="card__phoneCustomers"></span>
+                                </div>
+                                <div class="chart__shopping">
+                                    <h4 id="card__key__shopping">Purchases made</h4>
+                                    <span id="card__shoppingCustomers"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </article>
+            </div>
+            <div id="Products-content" class="tab-content">
+                <div class="mainContainer__dashboard__inputs">
+                    <div class="head__container">
+                        <div class="input__container">
+                            <input type="text" placeholder="Search products" id="searchCompany">
+                            <i class="fa-solid fa-search"></i>
+                            <span>|</span>
+                            <select name="" data="not">
+                                <option value="">Name</option>
+                                <option value="">Code</option>
+                            </select>
+                        </div>
+                        <button id="buttonNewProduct" class="buttonNewProduct">New Product</button>
+                    </div>
+                </div>
+                <article class="scroll-container" id="scrollContainerProducts">
+                    <template id="template-card-products">
+                        <div class="cardProduct" id="card">
+                            <div class="infoContent">
+                                <div class="chart__left chart">
+                                    <div class="chart__product">
+                                        <h4 id="card__key__product">Product</h4>
+                                        <span id="card__product"></span>
+                                    </div>
+                                    <div class="chart__stock">
+                                        <h4 id="card__key__stock">Stock</h4>
+                                        <span id="card__stock"></span>
+                                    </div>
+                                    <div class="chart__mStock">
+                                        <h4 id="card__key__mStock">M-stock-level</h4>
+                                        <span id="card__mStock"></span>
+                                    </div>
+                                    <div class="chart__supplier">
+                                        <h4 id="card__key__supplier">Supplier</h4>
+                                        <span id="card__supplier"></span>
+                                    </div>
+                                </div>
+                                <div class="chart__right chart">
+                                    <div class="chart__code">
+                                        <h4 id="card__key__code" >Code</h4>
+                                        <span id="card__code"></span>
+                                    </div>
+                                    <div class="chart__price">
+                                        <h4 id="card__key__price">Price</h4>
+                                        <span id="card__price"></span>
+                                    </div>
+                                    <div class="chart__selling">
+                                        <h4 id="card__key__selling">Sellign</h4>
+                                        <span id="card__selling"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttonsContainer">
+                                <button class="firts">Display/Barcode</button>
+                                <button class="firts">Profit margin</button>
+                            </div>
+                        </div>
+                    </template>
+                </article>
+            </div>
+            <div id="Shop-content" class="tab-content">
                 <div class="mainContainer__dashboard__inputs">
                     <div class="head__container">
                         <div class="input__container">
@@ -90,41 +365,13 @@
                     </template>
                 </article>
             </div>
-            <section id="Categories-content" class="tab-content Categories-content" style="display: none;">
-                <article class="Categories__dashboard__inputs">
-                    <div class="head__categories">
-                        <input type="text" placeholder="Search">
-                        <i class="fa-solid fa-search"></i>
-                        <span>|</span>
-                        <select name="" data="not">
-                            <option value="">name</option>
-                            <option value="">categories</option>
-                        </select>
-                    </div>
-                    <button id="buttonChanges" class="buttonSaveChanges">Save changes</button>
-                </article>
-                <div class="scrollContainerView">
-                    <template id="template-card__second">
-                        <section class="chartView">
-                            <article class="chartName">
-                                <div class="nameKey"><span>Name</span></div>
-                                <div id="nameValue" class="nameValue"></div>
-                            </article>
-                            <article class="chartNit">
-                                <div class="nitKey key"><span>NIT</span></div>
-                                <div id="nitValue" class="nitValue"></div>
-                            </article>
-                            <button class="addMethod" id="addMethod">Agregar Módulo</button>
-                        </section>
-                    </template>
-                </div>
-            </section>
         </section>
         <div class="loaderContainer" style="display: none;">
             <div class="loader"></div>
         </div>
     </main>
     <script src="../static/controllers/main.js" type="module"></script>
+    <script src="../static/controllers/homePage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

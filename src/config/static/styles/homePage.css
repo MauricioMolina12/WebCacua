@@ -26,6 +26,9 @@ button{
     cursor: pointer;
 }
 
+
+
+
 .column__bar .column__bar__title{
     position: absolute;
     top: 10px;
@@ -124,8 +127,9 @@ button{
 
 
 .mainContainer .mainContainer__dashboard .mainContainer__dashboard__inputs{
-    width: 100%;
+    width: 90%;
     height: 5vh;
+    margin-left: 3.5%;
 }
 
 .mainContainer__dashboard__inputs .head__container{
@@ -138,7 +142,7 @@ button{
     padding-right: 30px;
 }
 
-.head__container .buttonNewCompany{
+.head__container button{
     height: 100%;
     padding: 0 10px;
     background-color: var(--mainColor);
@@ -245,10 +249,10 @@ button{
 .scroll-container .card{
     width: 90%;
     height: 20vh;
-    box-shadow: 3px 3px 10px #ccc, -3px -3px 10px #ccc;
-    border-radius: 10px;
+    box-shadow: 3px 3px 10px #bdbdbd;
+    border-radius: 20px;
     margin: 20px;
-    min-height: 16vh;
+    min-height: 20vh;
     display: flex;
     padding: 10px;
     justify-content: end;
@@ -351,6 +355,39 @@ select:not([data="not"]) {
 .buttonActive{
     position: relative;
 
+}
+.buttonActive.active {
+    background-color: white;
+    border-radius: 50px 0 0 50px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0px 2px 4px #ccc;
+}
+
+.buttonActive.active::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: -6px;
+    transform: rotate(20deg);
+    border-right: 10px solid white;
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border-radius: 0 0 100% 0;
+}
+
+.buttonActive.active::before {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    right: -6px;
+    transform: rotate(-80deg);
+    border-right: 10px solid white;
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border-radius: 0 0 100% 0;
 }
 
 
@@ -547,4 +584,164 @@ select:not([data="not"]) {
     100%{
         transform: rotate(360deg);
     }
+}
+
+.scroll-container .cardProduct{
+    width: 90%;
+    height: 28vh;
+    border-radius: 20px;
+    margin: 20px;
+    min-height: 28vh;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    box-shadow: 3px 3px 10px #bdbdbd;
+}
+
+
+.scroll-container .cardProduct .chart{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    padding-left: 20px;
+}
+
+.scroll-container .cardProduct .chart:first-of-type::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 50%;
+    width: 2px;
+    background-color: #ccc;
+}
+
+.scroll-container .cardProduct.chart div{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.scroll-container .cardProduct .chart div > *{
+    width: 50%;
+}
+
+
+.cardProduct .infoContent{
+    display: flex;
+    width: 100%;
+    height: 85%;
+}
+
+.scroll-container .cardProduct .buttonsContainer{
+    width: 100%;
+    height: 15%;
+}
+
+.cardProduct .buttonsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 5%;
+}
+
+
+.buttonsContainer button{
+    margin-right: 20px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+
+.buttonsContainer button:last-of-type{
+    background-color: var(--secondColor);
+    color: white;
+}
+
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    width: 50%;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-container input[type="text"],
+.input-container input[type="file"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 250px !important;
+}
+
+.input-container input[type="checkbox"] {
+    accent-color: var(--secondColor);
+    margin-right: 10px;
+    height: 20px;
+}
+
+.file-input {
+    position: relative;
+    overflow: hidden;
+}
+
+.file-input input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--secondColor);
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 5px;
+    border: none;
+    outline: none;
+}
+
+.file-input #img-path {
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.file-input .file-button {
+    margin-left: 10px;
 }

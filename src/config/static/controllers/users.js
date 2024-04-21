@@ -20,7 +20,13 @@ const d = document,
             email: "giovannyCacua@gmail.com",
             password: "giovanny12345",
             scope: 'E'
+        },
+        {
+            email: "Juan Valdez",
+            password: 'juanvaldez123',
+            scope: 'C'
         }
+        
     ]
 
     function validateLogin() {
@@ -38,6 +44,7 @@ const d = document,
             const foundUser = users.find(user => user.email === enteredUser && user.password === enteredPassword);
     
             if (foundUser) {
+                setUserRole(foundUser.scope,foundUser.email,foundUser.password);
                 credentialsIncorrects.style.display = 'none';
                 window.location.href = '../../../../src/config/templates/homePage.html';
             } else {
@@ -47,5 +54,11 @@ const d = document,
     }
 
     validateLogin()
+
+    function setUserRole(role,email,password) {
+        localStorage.setItem('userRole', role);
+        localStorage.setItem('Email', email);
+        localStorage.setItem('Password', password);
+    }
     
     
