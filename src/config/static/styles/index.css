@@ -56,8 +56,8 @@ body{
 }
 
 .img__flex div{
-    width: 20%;
-    height: 130%;
+    width: 30%;
+    height: 200%;
     clip-path: circle();
 }
 
@@ -93,7 +93,7 @@ body{
 
 .containerButtons{
     display: flex;
-    width: 50%;
+    width: 60%;
     height: 10%;
     align-items: center;
     justify-content: start;

@@ -29,7 +29,7 @@ const d = document,
         {
             email: "Elián Gutierrez",
             password: 'eliand123',
-            scope: 'CU'
+            scope: 'cli'
         }
         
     ]

@@ -70,7 +70,7 @@ const d = document,
         }
         
     ]
-
+    
 
     const empleoyees = [
         {
@@ -90,6 +90,22 @@ const d = document,
             cc: "1133706755",
             status: true,
             salary: 20000000
+        },
+        
+    ]
+
+    const empleoyeesShop = [
+        {
+            name: empleoyees.name,
+            code: "#84-55877",
+            selligP: 9900000,
+            sale: "29/04/2024"
+        },
+        {
+            name: empleoyees.name,
+            code: "#85-52377",
+            selligP: 7900000,
+            sale: "30/04/2024"
         },
         
     ]
@@ -232,6 +248,28 @@ const d = document,
         return scrollContainer;
     }
 
+    export function getShop(templateID, scrollContainerID) {
+        let template = document.getElementById(templateID).content.cloneNode(true);
+        let fragment = document.createDocumentFragment();
+        let scrollContainer = document.getElementById(scrollContainerID);
+        
+        empleoyeesShop.forEach(empleoyee => {
+            let clone = template.cloneNode(true);
+            clone.querySelector('#card__code').textContent = empleoyee.code;
+            clone.querySelector('#card__selling').textContent = empleoyee.selligP;
+            clone.querySelector('#card__empleoyee').textContent = empleoyee.name;
+            clone.querySelector('#card__sale').textContent = empleoyee.sale;
+    
+            fragment.appendChild(clone);
+        });
+
+        scrollContainer.innerHTML = '';
+        scrollContainer.appendChild(fragment);
+    
+
+        return scrollContainer;
+    }
+
     export function getCustomers(templateID, scrollContainerID) {
         let template = document.getElementById(templateID).content.cloneNode(true);
         let fragment = document.createDocumentFragment();
@@ -291,22 +329,22 @@ const d = document,
         const form = `
             <div>
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name"><br><br>
+                <input type="text" id="name" name="name" style="padding:18px"><br><br>
                 <label for="ubication">Ubication:</label>
-                <input type="text" id="ubication" name="ubication"><br><br>
+                <input type="text" id="ubication" name="ubication" style="padding:18px"><br><br>
                 <label for="time">Time:</label>
-                <input type="text" id="time" name="time"><br><br>
+                <input type="text" id="time" name="time" style="padding:18px"><br><br>
                 <label for="correo">Correo:</label>
-                <input type="text" id="correo" name="correo"><br><br>
+                <input type="text" id="correo" name="correo" style="padding:18px"><br><br>
                 <label for="nit">NIT:</label>
-                <input type="text" id="nit" name="nit"><br><br>
+                <input type="text" id="nit" name="nit" style="padding:18px"><br><br>
                 <label for="status">Status:</label>
-                <select id="status" name="status">
+                <select id="status" name="status" style="padding:18px">
                     <option value="true">Active</option>
                     <option value="false">Inactive</option>
                 </select><br><br>
                 <label for="modules">Modules:</label>
-                <input type="text" id="modules" name="modules"><br><br>
+                <input type="text" id="modules" name="modules" style="padding:18px"><br><br>
             </div>
         `;
     
@@ -783,7 +821,7 @@ const d = document,
         }else if(userRole === 'C'){
             userRoleSpan.textContent = 'You are a company' || 'Guest'; 
             switchTab('Empleoyees');
-            showItems('Empleoyees','Customers','Products','Chart');
+            showItems('Empleoyees','Customers','Products','Shopping');
         }else if(userRole === 'E'){
             let buttonNewCustomers = d.getElementById('buttonNewCustomers');
             buttonNewCustomers.style.display = 'block'

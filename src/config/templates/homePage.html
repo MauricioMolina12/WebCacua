@@ -49,7 +49,7 @@
                 </button>
                 <span class="labels">Shopping</span>
             </div>
-            <div id="buttonChart" class="buttonChart tab-link buttonActive">
+            <div id="buttonShopping" class="buttonShopping tab-link buttonActive">
                 <button class="chartButton buttons">
                     <i class="fa-solid fa-chart-simple"></i>
                 </button>
@@ -215,7 +215,7 @@
                                 <option value="">CC</option>
                             </select>
                         </div>
-                        <button id="buttonNewCustomers" class="buttonNewCustomers" style="display: none;">New Customer</button>
+                        <button id="buttonNewCustomers" class="buttonNewCustomers" >New Customer</button>
                     </div>
                 </div>
                 <article class="scroll-container" id="scrollContainerCustomers">
@@ -310,8 +310,8 @@
                                 </div>
                             </div>
                             <div class="buttonsContainer">
-                                <button class="firts">Display/Barcode</button>
-                                <button class="firts">Profit margin</button>
+                                <button  class="firts">Display/Barcode</button>
+                                <button id="pMargin" class="firts">Profit margin</button>
                             </div>
                         </div>
                     </template>
@@ -365,6 +365,42 @@
                                 <div class="chart__modules">
                                     <h4 id="card__key__modules">Modules</h4>
                                     <span id="card__modules"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </article>
+            </div>
+            <div id="Shopping-content" class="tab-content">
+                <div class="mainContainer__dashboard__inputs">
+                    <div class="head__container">
+                        <div class="input__container">
+                            <input type="text" placeholder="Search purcase by date" id="searchPurcase">
+                            <i class="fa-solid fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+                <article class="scroll-container" id="scrollContainerShop">
+                    <template id="template-card-shop">
+                        <div class="card" id="card">
+                            <div class="chart__left chart">
+                                <div class="chart__code">
+                                    <h4 id="card__key__code">Code sale</h4>
+                                    <span id="card__code"></span>
+                                </div>
+                                <div class="chart__selling">
+                                    <h4 id="card__key__selling">Selling price</h4>
+                                    <span id="card__selling"></span>
+                                </div>
+                            </div>
+                            <div class="chart__right chart">
+                                <div class="chart__empleoyee">
+                                    <h4 id="card__key__empleoyee">Empleoyee</h4>
+                                    <span id="card__empleoyee"></span>
+                                </div>
+                                <div class="chart__sale">
+                                    <h4 id="card__key__sale">Sale</h4>
+                                    <span id="card__sale"></span>
                                 </div>
                             </div>
                         </div>

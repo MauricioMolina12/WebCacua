@@ -15,7 +15,8 @@ import {
     searchCompany2,
     searchEmpleoyees,
     searchCustomers,
-    searchProducts
+    searchProducts,
+    getShop
 } from "../controllers/homePage.js";
 
 
@@ -43,6 +44,8 @@ window.addEventListener("DOMContentLoaded", e => {
 
     getCompanies('template-card__second','.scrollContainerView')
 
+    getShop('template-card-shop','scrollContainerShop')
+
 
     exit('signOut');
 
@@ -56,7 +59,7 @@ window.addEventListener("DOMContentLoaded", e => {
     
     const buttonProducts = document.querySelector('.buttonProducts');
 
-    const buttonShop = document.querySelector('.buttonShop');
+    const buttonShop = document.querySelector('.buttonShopping');
 
 
 
@@ -80,7 +83,7 @@ window.addEventListener("DOMContentLoaded", e => {
     })
 
     buttonShop.addEventListener('click',()=>{
-        switchTab('Shop');
+        switchTab('Shopping');
     })
 
     

@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html{
+    font-family: 'Montserrat';
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:root{
+    --mainColor: #508991;
+    --secondColor: #172A3A;
+    --hoverColor: #2d6269;
+}
+.main__container__product{
+    width: 50%;
+    height: 60%;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5%;
+    font-weight: normal;
+}
+
+.main__container__product h2{
+    font-weight: 500;
+    font-style: italic;
+}
+
+.main__container__product [class$="view"]{
+    width: 80%;
+    height: auto;
+    display: flex;
+}
+
+.main__container__product [class$="view"] > div{
+    width: 50%;
+    height: 100%;
+    padding: 15px;
+}
+
+.main__container__product [class$="view"] > div:nth-last-of-type(1){
+    padding: 0;
+}
+
+.main__container__product [class$="view"] > div > input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
