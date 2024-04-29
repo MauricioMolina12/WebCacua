@@ -74,7 +74,7 @@ const d = document,
 
     const empleoyees = [
         {
-            name: "Mauricio",
+            name: "Breiner",
             lastName: "Molina",
             time: "1 year",
             correo: "maupena9@gmail.com",
