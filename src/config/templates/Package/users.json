@@ -1,12 +1,14 @@
 {
     "users": [
       {
-        "email": "user1@example.com",
-        "password": "password1"
+        "email": "maupena9@gmail.com",
+        "password": "mauriciomolina123",
+        "scope": "A"
       },
       {
-        "email": "user2@example.com",
-        "password": "password2"
+        "email": "giovanny@gmail.com",
+        "password": "giovannycacua123",
+        "scope": "E"
       }
     ]
   }
