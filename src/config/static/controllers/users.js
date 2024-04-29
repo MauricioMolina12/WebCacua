@@ -7,8 +7,8 @@ const d = document,
 
       const users = [
         {
-            email: "maupena9@gmail.com",
-            password: "mauriciomolina1234",
+            email: "Admin@gmail.com",
+            password: "Admin123",
             scope: 'A'
         },
         {
