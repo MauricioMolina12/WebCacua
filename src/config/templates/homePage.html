@@ -49,6 +49,12 @@
                 </button>
                 <span class="labels">Shopping</span>
             </div>
+            <div id="buttonChart" class="buttonChart tab-link buttonActive">
+                <button class="chartButton buttons">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </button>
+                <span class="labels">Historial</span>
+            </div>
             <div class="buttonOut">
                 <button id="signOut" class="categoriesButton buttons">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -117,7 +123,7 @@
             <section id="Categories-content" class="tab-content Categories-content">
                 <article class="Categories__dashboard__inputs">
                     <div class="head__categories">
-                        <input type="text" placeholder="Search">
+                        <input type="text" placeholder="Search" id="searchCompany2">
                         <i class="fa-solid fa-search"></i>
                         <span>|</span>
                         <select name="" data="not">
@@ -127,7 +133,7 @@
                     </div>
                     <button id="buttonChanges" class="buttonSaveChanges">Save changes</button>
                 </article>
-                <div class="scrollContainerView">
+                <div class="scrollContainerView" id="scrollContainerView">
                     <template id="template-card__second">
                         <section class="chartView">
                             <article class="chartName">
@@ -147,7 +153,7 @@
                 <div class="mainContainer__dashboard__inputs">
                     <div class="head__container">
                         <div class="input__container">
-                            <input type="text" placeholder="Search Empleoyees" id="searchCompany">
+                            <input type="text" placeholder="Search Empleoyees" id="searchEmpleoyees">
                             <i class="fa-solid fa-search"></i>
                             <span>|</span>
                             <select name="" data="not">
@@ -201,7 +207,7 @@
                 <div class="mainContainer__dashboard__inputs">
                     <div class="head__container">
                         <div class="input__container">
-                            <input type="text" placeholder="Search customers" id="searchCompany">
+                            <input type="text" placeholder="Search customers" id="searchCustomers">
                             <i class="fa-solid fa-search"></i>
                             <span>|</span>
                             <select name="" data="not">
@@ -255,7 +261,7 @@
                 <div class="mainContainer__dashboard__inputs">
                     <div class="head__container">
                         <div class="input__container">
-                            <input type="text" placeholder="Search products" id="searchCompany">
+                            <input type="text" placeholder="Search products" id="searchProducts">
                             <i class="fa-solid fa-search"></i>
                             <span>|</span>
                             <select name="" data="not">

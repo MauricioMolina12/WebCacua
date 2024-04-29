@@ -1,27 +1,36 @@
+import { addUser } from './login.js';
+
+
+const d = document
+
 document.addEventListener("DOMContentLoaded", e => {
+    const form = document.getElementById('signup-form');
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evitar el envío automático del formulario
+        event.preventDefault(); 
 
         let isValid = true;
 
-        nameError.textContent = '';
-        emailError.textContent = '';
-        passwordError.textContent = '';
-        
+        let nameInput = d.getElementById('name'),
+            emailInput = d.getElementById('email'),
+            passwordInput = d.getElementById('password'),
+            errorName = d.getElementById('name-error'),
+            errorEmail = d.getElementById('email-error'),
+            errorPassword = d.getElementById('password-error')
+
         const nameRegex = /^[a-zA-Z\s]+$/;
         if (!nameRegex.test(nameInput.value.trim())) {
-            nameError.textContent = 'Name must contain only letters and spaces';
+            errorName.textContent = 'Name must contain only letters and spaces';
             isValid = false;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailInput.value.trim())) {
-            emailError.textContent = 'Please enter a valid email address';
+            errorEmail.textContent = 'Please enter a valid email address';
             isValid = false;
         }
 
         if (passwordInput.value.length < 8) {
-            passwordError.textContent = 'Password must be at least 8 characters long';
+            errorPassword.textContent = 'Password must be at least 8 characters long';
             isValid = false;
         }
 
@@ -31,6 +40,9 @@ document.addEventListener("DOMContentLoaded", e => {
                 email: emailInput.value.trim(),
                 password: passwordInput.value
             };
+
+            addUser(newUser);
+
 
             Swal.fire({
                 icon: 'success',

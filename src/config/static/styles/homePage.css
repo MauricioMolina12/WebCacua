@@ -197,10 +197,14 @@ button{
     border: none;
     height: 90%;
     padding: 10px 20px; 
-    font-size: 1.2rem;
+    font-size: 100%;
     border-radius: 5px;
     color: var(--secondColor);
     cursor: pointer;
+}
+
+.input__container select option{
+    font-size: 100%;
 }
 
 .input__container select:focus{
@@ -312,13 +316,11 @@ label {
     display: block;
 }
 
-input[type="text"]:not(#searchCompany),
+input[type="text"],
 select:not([data="not"]){
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #ccc !important;
+    border-radius: inherit;
     width: 100%;
-    margin-bottom: 10px;
     box-sizing: border-box; 
     font-size: 16px;
 }
@@ -412,6 +414,7 @@ select:not([data="not"]) {
     display: flex;
     justify-content: space-between;
     padding-right: 30px;
+    margin-left: 2.5%;
 }
 
 .Categories-content .Categories__dashboard__inputs .head__categories{
@@ -528,6 +531,7 @@ select:not([data="not"]) {
     outline: none;
     color: var(--secondColor);
     font-weight: 700;
+    font-size: 80%;
 }
 
 .imgPlanta {
@@ -744,4 +748,8 @@ select:not([data="not"]) {
 
 .file-input .file-button {
     margin-left: 10px;
+}
+
+.h-30{
+    height: 30%;
 }

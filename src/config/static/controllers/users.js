@@ -25,9 +25,19 @@ const d = document,
             email: "Juan Valdez",
             password: 'juanvaldez123',
             scope: 'C'
+        },
+        {
+            email: "Elián Gutierrez",
+            password: 'eliand123',
+            scope: 'CU'
         }
         
     ]
+
+
+
+
+    
 
     function validateLogin() {
         const form = d.querySelector('.main__form');
@@ -54,6 +64,7 @@ const d = document,
     }
 
     validateLogin()
+
 
     function setUserRole(role,email,password) {
         localStorage.setItem('userRole', role);
