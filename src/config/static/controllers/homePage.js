@@ -252,6 +252,7 @@ const d = document,
         let template = document.getElementById(templateID).content.cloneNode(true);
         let fragment = document.createDocumentFragment();
         let scrollContainer = document.getElementById(scrollContainerID);
+
         
         empleoyeesShop.forEach(empleoyee => {
             let clone = template.cloneNode(true);
