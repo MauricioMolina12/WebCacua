@@ -35,10 +35,6 @@ const d = document,
     ]
 
 
-
-
-    
-
     function validateLogin() {
         const form = d.querySelector('.main__form');
         const userInput = d.getElementById('userInput');
