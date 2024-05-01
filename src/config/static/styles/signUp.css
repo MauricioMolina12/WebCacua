@@ -64,6 +64,14 @@ button{
     left: 20px;
 }
 
+.container-inputs label{
+    position: absolute;
+    font-size: 1rem;
+    top: -50%;
+    left: 0;
+}
+
+
 .password__container{
     position: relative;
 }
