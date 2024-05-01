@@ -129,6 +129,12 @@ button{
     width: auto;
 }
 
+.column__bar.desactive .column__bar__title{
+    position: absolute;
+    left: 5%;
+    top: 20%;
+}
+
 .column__bar.desactive .buttonOut .labels{
     display: none;
 }
