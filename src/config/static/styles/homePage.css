@@ -795,9 +795,8 @@ select:not([data="not"]) {
 
 
 .main__container__product{
-    width: 50%;
-    height: 60%;
-    border: 1px solid black;
+    width: auto;
+    height: auto;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -812,15 +811,18 @@ select:not([data="not"]) {
 }
 
 .main__container__product [class$="view"]{
-    width: 80%;
+    width: auto;
     height: auto;
     display: flex;
 }
 
 .main__container__product [class$="view"] > div{
     width: 50%;
-    height: 100%;
+    height: auto;
     padding: 15px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
 .main__container__product [class$="view"] > div:nth-last-of-type(1){
@@ -833,6 +835,7 @@ select:not([data="not"]) {
     outline: none;
     border: 1px solid #ccc;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .customerContainer{

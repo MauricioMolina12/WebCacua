@@ -19,7 +19,11 @@ import {
     getShop,
     getSuppliers,
     showNewSupplierForm,
-    showNewCustomersForm
+    showNewCustomersForm,
+    addDisplay,
+    addProfit,
+    addDiscount,
+    getProducts2
 } from "../controllers/homePage.js";
 
 
@@ -43,6 +47,7 @@ window.addEventListener("DOMContentLoaded", e => {
     getCompanies('template-card__second','.scrollContainerView')
     getShop('template-card-shop','scrollContainerShop')
     getSuppliers('template-card-Supplier','scrollContainerSupplier')
+    getProducts2('template-card-products2','scrollContainerProducts2')
 
 
     exit('signOut');
@@ -132,6 +137,9 @@ window.addEventListener("DOMContentLoaded", e => {
 
 
     addModule('.addMethod')
+    addProfit('.profit')
+    addDisplay('.display')
+    addDiscount('.discount')
 
     showUserRole();
 

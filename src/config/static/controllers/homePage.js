@@ -96,6 +96,7 @@ const empleoyees = [
 
 ]
 const empleoyeesShop = [
+    
     {
         name: empleoyees.name,
         code: "#84-55877",
@@ -137,8 +138,11 @@ const products = [
         mStock: 5,
         supplier: "Best Buy Co.Inc",
         code: "PROD-5678-XYZ",
-        price: 2200000,
-        selling: 3300000
+        price: 2000000,
+        selling: 3300000,
+        image: "../static/assets/s22.avif",
+        codigoBarra: "../static/assets/Codabar2.jpg"
+
     },
     {
         product: "Samsung Galaxy S23",
@@ -147,7 +151,10 @@ const products = [
         supplier: "Best Buy Co.Inc",
         code: "PROD-5678-XYZ",
         price: 2200000,
-        selling: 3300000
+        selling: 3300000,
+        image: "../static/assets/s23.avif",
+        codigoBarra: "../static/assets/EAN8.png"
+
     },
     {
         product: "Samsung Galaxy S24",
@@ -155,8 +162,11 @@ const products = [
         mStock: 5,
         supplier: "Best Buy Co.Inc",
         code: "PROD-5678-XYZ",
-        price: 2200000,
-        selling: 3300000
+        price: 2500000,
+        selling: 3300000,
+        image: "../static/assets/s24.webp",
+        codigoBarra: "../static/assets/Codabar3.jpg"
+
     },
     {
         product: "Samsung Galaxy S25",
@@ -164,17 +174,12 @@ const products = [
         mStock: 5,
         supplier: "Best Buy Co.Inc",
         code: "PROD-5678-XYZ",
-        price: 2200000,
-        selling: 3300000
-    },
-    {
-        product: "Samsung Galaxy S22",
-        stock: 10,
-        mStock: 5,
-        supplier: "Best Buy Co.Inc",
-        code: "PROD-5678-XYZ",
-        price: 2200000,
-        selling: 3300000
+        price: 3000000,
+        selling: 3300000,
+        image: "../static/assets/s25.jpg",
+        codigoBarra: "../static/assets/Codabar4.jpg"
+
+
     },
 
 ]
@@ -283,7 +288,9 @@ export function getShop(templateID, scrollContainerID) {
         let clone = template.cloneNode(true);
         clone.querySelector('#card__code').textContent = empleoyee.code;
         clone.querySelector('#card__selling').textContent = empleoyee.selligP;
-        clone.querySelector('#card__empleoyee').textContent = empleoyee.name;
+        empleoyees.forEach(el=>{
+            clone.querySelector('#card__empleoyee').textContent = el.name;
+        })
         clone.querySelector('#card__sale').textContent = empleoyee.sale;
 
         fragment.appendChild(clone);
@@ -327,6 +334,9 @@ export function getProducts(templateID, scrollContainerID) {
     let fragment = document.createDocumentFragment();
     let scrollContainer = document.getElementById(scrollContainerID);
 
+    scrollContainer.innerHTML = '';
+
+
     products.forEach(product => {
         let clone = template.cloneNode(true);
         clone.querySelector('#card__product').textContent = product.product;
@@ -335,13 +345,38 @@ export function getProducts(templateID, scrollContainerID) {
         clone.querySelector('#card__supplier').textContent = product.supplier;
         clone.querySelector('#card__code').textContent = product.code;
         clone.querySelector('#card__price').textContent = product.price;
-        clone.querySelector('#card__selling').textContent = product.selling;
+        // clone.querySelector('#card__selling').textContent = product.selling;
 
 
         fragment.appendChild(clone);
     });
 
+    scrollContainer.appendChild(fragment);
+
+
+    return scrollContainer;
+}
+
+export function getProducts2(templateID, scrollContainerID) {
+    let template = document.getElementById(templateID).content.cloneNode(true);
+    let fragment = document.createDocumentFragment();
+    let scrollContainer = document.getElementById(scrollContainerID);
+
     scrollContainer.innerHTML = '';
+
+
+    products.forEach(product => {
+        let clone = template.cloneNode(true);
+        clone.querySelector('#image__product').src = product.image;
+        clone.querySelector('#card__product').textContent = product.product;
+        clone.querySelector('#card__code').textContent = product.code;
+        clone.querySelector('#card__price').textContent = product.price;
+        clone.querySelector('#card__stock').textContent = product.stock;
+
+
+        fragment.appendChild(clone);
+    });
+
     scrollContainer.appendChild(fragment);
 
 
@@ -600,7 +635,7 @@ export function showNewProductForm() {
 
 
 export function showNewCustomersForm(templateID, scrollContainerID) {
-                const form = `
+    const form = `
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <div class="input-container">
                              <label for="nameCustomers">Name:</label>
@@ -645,14 +680,14 @@ export function showNewCustomersForm(templateID, scrollContainerID) {
         },
     }).then((result) => {
         if (result.isConfirmed) {
-             const nameCustomers = d.getElementById('nameCustomers').value;
-             const lastnameCustomers = d.getElementById('lastnameCustomers').value;
-             const addressCustomers = d.getElementById('addressCustomers').value;
-             const correoCustomers = d.getElementById('correoCustomers').value;
-             const ccCustomers = d.getElementById('ccCustomers').value;
-             const phoneCustomers = d.getElementById('phoneCustomers').value;
-             const purchasesCustomers = d.getElementById('purchasesCustomers').value;
-             customers.push({ nameCustomers, lastnameCustomers, addressCustomers, correoCustomers, ccCustomers, phoneCustomers, purchasesCustomers });
+            const nameCustomers = d.getElementById('nameCustomers').value;
+            const lastnameCustomers = d.getElementById('lastnameCustomers').value;
+            const addressCustomers = d.getElementById('addressCustomers').value;
+            const correoCustomers = d.getElementById('correoCustomers').value;
+            const ccCustomers = d.getElementById('ccCustomers').value;
+            const phoneCustomers = d.getElementById('phoneCustomers').value;
+            const purchasesCustomers = d.getElementById('purchasesCustomers').value;
+            customers.push({ nameCustomers, lastnameCustomers, addressCustomers, correoCustomers, ccCustomers, phoneCustomers, purchasesCustomers });
 
             Swal.fire({
                 icon: 'success',
@@ -1003,7 +1038,7 @@ export function addModule(buttonAddMethod) {
         button.addEventListener("click", e => {
             const form = `
                     <div class="flex" style="height: auto">
-                        <select>
+                        <select style="padding: 15px">
                             <option>Modulo 1</option>
                             <option>Modulo 2</option>
                             <option>Modulo 3</option>
@@ -1031,6 +1066,222 @@ export function addModule(buttonAddMethod) {
         });
     });
 }
+
+
+export function addProfit(buttonAddMethod) {
+    const buttonsDisplay = document.querySelectorAll(buttonAddMethod);
+
+    buttonsDisplay.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const product = products[index];
+            const form = `
+                <main class="main__container__product">
+                    <section class="product_view">
+                        <div class="product__name__container"><span class="product__name">Product</span></div>
+                        <div class="product__value__container"><span class="product__value">${product.product}</span></div>
+                    </section>
+                    <section class="code_view">
+                        <div class="code__name__container"><span class="code__name">Code</span></div>
+                        <div class="code__value__container"><span class="code__value">${product.code}</span></div>
+                    </section>
+                    <section class="pricep_view">
+                        <div class="pricep__name__container"><span class="pricep__name">Purchase Price</span></div>
+                        <div class="pricep__value__container"><span class="pricep__value">${product.price}</span></div>
+                    </section>
+                    <section class="profit_view">
+                        <div class="profit__name__container"><span class="profit__name">Profit</span></div>
+                        <div class="profit__value__container"><input type="number" id="profitInput" class="profit__value"></div>
+                    </section>
+                    <section class="selling_price_view">
+                        <div class="selling__name__container"><span class="selling__name">Selling Price</span></div>
+                        <div class="selling__value__container"><span id="sellingPrice"></span></div>
+                    </section>
+                </main>
+            `;
+
+            Swal.fire({
+                title: 'Profit margin',
+                html: form,
+                showCancelButton: true,
+                confirmButtonText: 'Add profit margin',
+                cancelButtonText: 'Cancel',
+                showLoaderOnConfirm: true,
+                didOpen: () => {
+                    const profitInput = document.getElementById('profitInput');
+                    const sellingPriceDisplay = document.getElementById('sellingPrice');
+
+                    profitInput.addEventListener('input', e => {
+                        const profit = parseFloat(e.target.value);
+                        const purchasePrice = product.price;
+                        const sellingPrice = purchasePrice * (1 + profit / 100);
+                        sellingPriceDisplay.textContent = sellingPrice;
+                    });
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Selling price',
+                        text: 'The selling price has been asignated successfully.',
+                    });
+                }
+            });
+        });
+    });
+}
+
+export function addDiscount(buttonAddMethod) {
+    const buttonsDisplay = document.querySelectorAll(buttonAddMethod);
+
+    buttonsDisplay.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const product = products[index];
+            const form = `
+                <main class="main__container__product">
+                    <section class="product_view">
+                        <div class="product__name__container"><span class="product__name">Product</span></div>
+                        <div class="product__value__container"><span class="product__value">${product.product}</span></div>
+                    </section>
+                    <section class="code_view">
+                        <div class="code__name__container"><span class="code__name">Code</span></div>
+                        <div class="code__value__container"><span class="code__value">${product.code}</span></div>
+                    </section>
+                    <section class="pricep_view">
+                        <div class="pricep__name__container"><span class="pricep__name">Purchase Price</span></div>
+                        <div class="pricep__value__container"><span class="pricep__value">${product.price}</span></div>
+                    </section>
+                    <section class="profit_view">
+                        <div class="profit__name__container"><span class="profit__name">Profit</span></div>
+                        <div class="profit__value__container"><input type="number" id="profitInput" class="profit__value"></div>
+                    </section>
+                    <section class="selling_price_view">
+                        <div class="selling__name__container"><span class="selling__name">Selling Price</span></div>
+                        <div class="selling__value__container"><span id="sellingPrice"></span></div>
+                    </section>
+                    <section class="selling_price_view" style="padding:10px; height: 400px; display:flex; flex-direction: column; align-items: center; overflow-y: auto;">
+                        <h2 style="font-style: normal;">Days of the weeks</h2>
+                        <div style="width: 90%; height: auto; display: flex">
+                            <span style="width: 50%;">Monday</span>
+                            <input style="width: 50%;" type="checkbox">
+                        </div>
+                        <div style="width: 90%; height: auto; display: flex">
+                            <span style="width: 50%;">Tuesday</span>
+                            <input style="width: 50%;" type="checkbox">
+                        </div>
+                        <div style="width: 90%; height: auto; display: flex">
+                            <span style="width: 50%;">Wednesday</span>
+                            <input style="width: 50%;" type="checkbox">
+                        </div>
+                        <div style="width: 90%; height: auto; display: flex">
+                            <span style="width: 50%;">Thursday</span>
+                            <input style="width: 50%;" type="checkbox">
+                        </div>
+                        <div style="width: 90%; height: auto; display: flex">
+                            <span style="width: 50%;">Friday</span>
+                            <input style="width: 50%;" type="checkbox">
+                        </div>
+                        <div style="width: 90%; height: auto; display: flex">
+                            <span style="width: 50%;">Saturday</span>
+                            <input style="width: 50%;" type="checkbox">
+                        </div>
+                        
+                    </section>
+                </main>
+            `;
+
+            Swal.fire({
+                title: 'Product discount',
+                html: form,
+                showCancelButton: true,
+                confirmButtonText: 'Add profit margin',
+                cancelButtonText: 'Cancel',
+                showLoaderOnConfirm: true,
+                didOpen: () => {
+                    const profitInput = document.getElementById('profitInput');
+                    const sellingPriceDisplay = document.getElementById('sellingPrice');
+
+                    profitInput.addEventListener('input', e => {
+                        const profit = parseFloat(e.target.value);
+                        const purchasePrice = product.price;
+                        const sellingPrice = purchasePrice * (1 + profit / 100);
+                        sellingPriceDisplay.textContent = sellingPrice;
+                    });
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Selling price',
+                        text: 'The selling price has been asignated successfully.',
+                    });
+                }
+            });
+        });
+    });
+}
+
+export function addDisplay(buttonAddMethod) {
+    const buttonsDisplay = document.querySelectorAll(buttonAddMethod);
+
+    buttonsDisplay.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const product = products[index];
+            const form = `
+                <main class="main__container__product">
+                    <section class="product_view">
+                        <div class="product__name__container"><span class="product__name">Product</span></div>
+                        <div class="product__value__container"><span class="product__value">${product.product}</span></div>
+                    </section>
+                    <section class="code_view">
+                        <div class="code__name__container"><span class="code__name">Code</span></div>
+                        <div class="code__value__container"><span class="code__value">${product.code}</span></div>
+                    </section>
+                    <section class="pricep_view">
+                        <div class="pricep__name__container"><span class="pricep__name">Purchase Price</span></div>
+                        <div class="pricep__value__container"><span class="pricep__value">${product.price}</span></div>
+                    </section>
+                    <section class="pricep_view" style="display: flex; height: auto; padding: 20px">
+                        <div class="child_last" style="width:50%";height: 20px>
+                                <img src="${product.image}" alt="imagen del producto ${product.product}" style="max-width: 100%"; height: auto>
+                        </div>
+                        <div class="child_last" style="width:50%"; height: 20px>
+                            <img src="${product.codigoBarra}" alt="codigo de barras" style="max-width: 100%"; height: auto>
+                        </div>
+                    </section>
+                </main>
+            `;
+
+            Swal.fire({
+                title: 'Display - barcode',
+                html: form,
+                showCancelButton: true,
+                confirmButtonText: 'Add Display/Barcode',
+                cancelButtonText: 'Cancel',
+                showLoaderOnConfirm: true,
+                didOpen: () => {
+                    const profitInput = document.getElementById('profitInput');
+                    const sellingPriceDisplay = document.getElementById('sellingPrice');
+
+                    profitInput.addEventListener('input', e => {
+                        const profit = parseFloat(e.target.value);
+                        const purchasePrice = product.price;
+                        const sellingPrice = purchasePrice * (1 + profit / 100);
+                        sellingPriceDisplay.textContent = sellingPrice;
+                    });
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Supplier Created',
+                    });
+                }
+            });
+        });
+    });
+}
+
+
 
 export function showUserRole() {
     const userRole = localStorage.getItem('userRole');
@@ -1079,13 +1330,13 @@ function showItems(...tabs) {
     });
 };
 
-function showColumn(columnId){
+function showColumn(columnId) {
     const column = d.getElementById(columnId)
 
     column.style.width = "100%"
     column.style.height = "10vh"
     column.classList.add('desactive')
-    
+
     d.body.style.display = 'block'
 }
 
