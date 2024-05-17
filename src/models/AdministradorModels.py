@@ -1,4 +1,5 @@
 from config.db import db, ma, app
+from EmpresaModels import Empresa
 
 #BD Maestra
 class Administrador(db.Model):
@@ -8,6 +9,9 @@ class Administrador(db.Model):
     Nombre_Admin = db.Column(db.String(150))
     CC_Admin = db.colummn(db.Integer(10))
     Correo_Admin = db.columm(db.String(50))
+    
+    #Relacion
+    Tb_Empresa = db.relationship("Empresa", secondary="Tb_Empresa_Admin", back_populates="Tb_Administrador")
 
     
     def __init__(self, id_Admin, Nombre_Admin, CC_Admin, Correo_Admin):

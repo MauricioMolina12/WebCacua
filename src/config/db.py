@@ -12,4 +12,3 @@ ma = Marshmallow(app)
 
 
 #Tablas van en los models
-
