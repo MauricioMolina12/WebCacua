@@ -1,14 +1,14 @@
 from config.db import db, ma, app
-from .AdministradorModels import Administrador
-from .EmpresaModels import Empresa
+from .VentasModels import Ventas
+from .ProductoModels import Producto
 
 #BD Maestra
-class Empresa_Admin(db.Model):
-    __tablename__ = "Tb_Empresa_Admin"
+class VentaProducto(db.Model):
+    __tablename__ = "Tb_Ventas_Producto"
 
-    id_Admin = db.Column(db.Integer, db.ForeignKey('Tb_Administrador.id_Admin') ,primary_key = True)
-    id_Empresa = db.Column(db.Integer, db.ForeignKey('Tb_Empresa.id_Empresa') ,primary_key = True)
-    Fecha_Inicio = db.Column(db.String(10))
+    id_Venta = db.Column(db.Integer, db.ForeignKey('') ,primary_key = True)
+    id_Producto = db.Column(db.Integer, db.ForeignKey('') ,primary_key = True)
+    Valor = db.Column(db.String(10))
     Fecha_Final = db.colummn(db.Integer(10))
     Modulo = db.columm(db.String(50))
 

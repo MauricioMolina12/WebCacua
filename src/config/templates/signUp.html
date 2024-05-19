@@ -31,10 +31,10 @@
                 <label for="password">Password</label>
             </section>
             <section class="callToActionContainer">
-                <button type="submit" class="callToActionButton">Sign Up</button>
+                <button onclick = window.location.href= "{{ url_for('SignUp.ButtonRegister') }}" type="submit" class="callToActionButton">Sign Up</button>
             </section>
             <section class="containerSignUpAction">
-                <a href="login.html" class="signUpActionButton">Already have an account? <span>Log in</span></a>
+                <a href="{{ url_for('SignUp.Sign_In') }}" class="signUpActionButton">Already have an account? <span>Log in</span></a>
             </section>
         </form>
     </main>
