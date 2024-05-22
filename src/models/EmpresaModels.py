@@ -1,7 +1,4 @@
 from config.db import db, ma, app
-from .AdministradorModels import Administrador
-from .Empresa_AdminModels import Empresa_Admin
-from .UsuarioModels import Usuario
 
 #BD Maestra
 class Empresa(db.Model):
@@ -11,22 +8,22 @@ class Empresa(db.Model):
     Nombre_Empresa = db.Column(db.String(50))
     Nic_Empresa = db.colummn(db.Integer(20))
     Correo_Empresa = db.columm(db.String(50))
-
-    #Relaciones
-    Tb_Administrador = db.relationship("Administrador", secondary="Tb_Empresa_Admin", back_populates="Tb_Empresa")
-    R_usuario = db.relationship('Usuario', backref = 'empresa', lazy = True) #uno a Muchos
-    R_Productos = db.relationship('Usuario', backref = 'empresa', lazy = True) #uno a Muchos
+    Fecha_Inicio = db.Column(db.String(10))
+    Fecha_Final = db.colummn(db.Integer(10))
+    id_Modulo = db.columm(db.String(50))
     
-    
-    def __init__(self, id_Empresa, Nombre_Empresa, Nic_Empresa, Correo_Empresa):
+    def __init__(self, id_Empresa, Nombre_Empresa, Nic_Empresa, Correo_Empresa, Fecha_Inicio, Fecha_Final, id_Modulo):
         self.id_Empresa = id_Empresa
         self.Nombre_Empresa = Nombre_Empresa
         self.Nic_Empresa = Nic_Empresa
         self.Correo_Empresa = Correo_Empresa
+        self.Fecha_Inicio = Fecha_Inicio
+        self.Fecha_Final = Fecha_Final
+        self.id_Modulo = id_Modulo
 
 with app.app_context():
     db.create_all()
 
 class UsersSchema(ma.Schema):
     class Meta:
-        fields = ('id_Empresa', 'Nombre_Empresa', 'Nic_Empresa', 'Correo_Empresa')
+        fields = ('id_Empresa', 'Nombre_Empresa', 'Nic_Empresa', 'Correo_Empresa', 'Fecha_Inicio', 'Fecha_Final', 'id_Modulo')

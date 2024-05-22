@@ -52,7 +52,7 @@ const d = document,
             if (foundUser) {
                 setUserRole(foundUser.scope,foundUser.email,foundUser.password);
                 credentialsIncorrects.style.display = 'none';
-                window.location.href = '../../../../src/config/templates/homePage.html';
+                window.location.href = "/HomeUser";
             } else {
                 credentialsIncorrects.style.display = 'block';
             }
