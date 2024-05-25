@@ -2,6 +2,7 @@ from config.db import db, ma, app
 from .EmpresaModels import Empresa
 from .RolsModels import Rols
 
+#BD Maestra
 class Usuario(db.Model):
     __tablename__ = "Tb_Usuarios"
 
@@ -11,9 +12,9 @@ class Usuario(db.Model):
     Contraseña = db.Column(db.String(50))
     CC_Usuario = db.Column(db.Integer(10))
     Correo_Usuario = db.Column(db.String(60))
-    Telefono = db.column(db.Integer(10))
+    Telefono = db.Column(db.Integer(10))
     Rol = db.Column(db.Integer(), db.Foreignkey('Tb_Rol.id_Rol'))
-    Status = db.Column(db.Integer(2)) # 1 - Activo / 0 - Inactivo
+    Status = db.Column(db.Integer(1)) # 1 - Activo / 0 - Inactivo
     id_Empresa = db.Column(db.Integer, db.ForeignKey('Tb_Empresa.id_Empresa'), nullable = False)
 
     def __init__(self, id_Usuario, Nombre_Usuario, Contraseña,CC_Usuario, Correo_Usuario,Telefono, Rol, Status, id_Empresa):
