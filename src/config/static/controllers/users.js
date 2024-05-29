@@ -67,5 +67,39 @@ const d = document,
         localStorage.setItem('Email', email);
         localStorage.setItem('Password', password);
     }
+
+    //ChatGPT 
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('login-form');
+    
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+    
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+    
+            const response = await fetch('/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                // Redirigir basado en el rol del usuario
+                if (data.role === 'admin') {
+                    window.location.href = '/admin/dashboard';
+                } else if (data.role === 'user') {
+                    window.location.href = '/user/dashboard';
+                }
+            } else {
+                alert(data.message);
+            }
+        });
+    });
+    
     
     

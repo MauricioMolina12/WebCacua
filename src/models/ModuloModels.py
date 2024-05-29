@@ -6,7 +6,7 @@ class Modulos(db.Model):
 
     id_Modulo = db.Column(db.Integer, primary_key = True, autoincrement=True, nullable=False)
     Nombre_Modulo = db.Column(db.String(50))
-    Descripcion = db.Colummn(db.Integer(20))
+    Descripcion = db.Column(db.String(80))
     
     def __init__(self, id_Modulo, Nombre_Modulo, Descripcion):
         self.id_Modulo = id_Modulo

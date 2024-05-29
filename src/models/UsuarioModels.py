@@ -10,11 +10,11 @@ class Usuario(db.Model):
     Nombre_Usuario = db.Column(db.String(50))
     Apellido_Usuario = db.Column(db.String(50))
     Contraseña = db.Column(db.String(50))
-    CC_Usuario = db.Column(db.Integer(10))
+    CC_Usuario = db.Column(db.Integer)
     Correo_Usuario = db.Column(db.String(60))
-    Telefono = db.Column(db.Integer(10))
-    Rol = db.Column(db.Integer(), db.Foreignkey('Tb_Rol.id_Rol'))
-    Status = db.Column(db.Integer(1)) # 1 - Activo / 0 - Inactivo
+    Telefono = db.Column(db.Integer)
+    Rol = db.Column(db.Integer, db.ForeignKey('Tb_Rol.id_Rol'))
+    Status = db.Column(db.Integer) # 1 - Activo / 0 - Inactivo
     id_Empresa = db.Column(db.Integer, db.ForeignKey('Tb_Empresa.id_Empresa'), nullable = False)
 
     def __init__(self, id_Usuario, Nombre_Usuario, Contraseña,CC_Usuario, Correo_Usuario,Telefono, Rol, Status, id_Empresa):
@@ -33,4 +33,4 @@ with app.app_context():
 
 class UsersSchema(ma.Schema):
     class Meta:
-        fields = ('id_Usuario','Nombre_Usuario', 'Contraseña','CC_Usuario', 'Correo_Usuario','Telefono', 'Rol', 'Status', 'id_Empresa')
+        fields = ('id_Usuario','Nombre_Usuario', 'Contraseña', 'CC_Usuario', 'Correo_Usuario', 'Telefono', 'Rol', 'Status', 'id_Empresa')

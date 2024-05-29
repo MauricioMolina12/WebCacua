@@ -4,8 +4,8 @@ from config.db import db, ma, app
 class Rols(db.Model):
     __tablename__ = "Tb_Rol"
 
-    id_Rol = db.Column(db.Integer, primary_key = True, autoincrement=True, nullable=False)
-    Nombre_Modulo = db.Columm(db.String(50))
+    id_Rol = db.Column(db.Integer, primary_key = True, autoincrement=True, nullable=False)   #1 Admin, 2 Empresa, 3 Empleado, 4 Cliente
+    Nombre_Rol = db.Column(db.String(50))
     Descripcion = db.Column(db.String(100))
 
     
@@ -18,6 +18,6 @@ class Rols(db.Model):
 with app.app_context():
     db.create_all()
 
-class UsersSchema(ma.Schema):
+class RolsSchema(ma.Schema):
     class Meta:
         fields = ('id_Rol', 'Nombre_Modulo', 'Descripcion')

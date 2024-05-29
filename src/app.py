@@ -1,7 +1,8 @@
 from flask import Flask
-from routes.Home import index_home
-from routes.SignIn import SignIn
-from routes.SignUp import SignUp
+from controllers.HomeControllers import index_home
+from controllers.SignInControllers import SignIn
+from controllers.SignUpControllers import SignUp
+from config.db import db
 
 app = Flask(__name__, template_folder='config/templates', static_folder = 'config/static')
 
