@@ -1,8 +1,7 @@
 from flask import Blueprint, render_template, request, json, jsonify, redirect, url_for, session
-from werkzeug.security import check_password_hash
 from models.UsuarioModels import Usuario, UsersSchema
-from models.RolsModels import Rols, RolsSchema
-from config.db import db, ma, app
+from config.db import create_app
+from werkzeug.security import generate_password_hash, check_password_hash
 
 SignIn = Blueprint('SignIn', __name__)
 
@@ -11,31 +10,44 @@ SignIn = Blueprint('SignIn', __name__)
 def Sign_Up():
     return render_template('signUp.html')
 
-@SignIn.route("/HomeUser", endpoint = 'ButtonIn')
-def ButtonIn():
+@SignIn.route("/HomeUser", endpoint = 'HomeUser')
+def HomeUser():
     return render_template('homePage.html')
 
-@SignIn.route("/signin", methods=["POST"])
+@SignIn.route("/auth/login", methods=["POST"])
 def signin():
-    if request.method == 'POST':
-        data = request.get_json()
-        username = data.get('username')
-        password = data.get('password')
-        
-        user = Usuario.query.filter_by(username=username).first()
+    data = request.get_json()
+    username = data.get('correo')
+    password = data.get('password')
 
-        if user and check_password_hash(user.password, password):
-            session['user_id'] = user.id
-            session['role'] = user.role.name
+    print(data)
+    
+    user = Usuario.query.filter_by(Correo_Usuario=username).first()
+    user = Usuario.query.filter_by(Correo_Usuario=username, Contraseña=password).first()
 
-            return jsonify({"message": "Login successful", "role": user.role.name}), 200
+    if not user:
+        return jsonify({'message': 'Credenciales inválidas'}), 403
+    
+    # Guardar el usuario en la sesión
+    session['user_id'] = user.id_Usuario
+    session['role'] = user.Rol
 
-        return jsonify({"message": "Invalid credentials"}), 401
+    # Si las credenciales son válidas, construimos la respuesta JSON con los datos requeridos
+    response_data = {
+        'message': 'Inicio de sesión exitoso',
+        'user_id': user.id_Usuario,
+        'rol': user.Rol
+    }
+    return jsonify(response_data)
 
-    return render_template('login.html')
-
-@SignIn.route('/logout', methods=['POST'])
+@SignIn.route('/logout/login', methods=['POST', 'GET'])
 def logout():
     session.pop('user_id', None)
     session.pop('role', None)
-    return jsonify({"message": "Logged out successfully"}), 200
+    return redirect(url_for('SignIn.sign_in'))
+
+
+@SignIn.route('/login', methods=['GET'])
+def sign_in():
+    return render_template('login.html')
+

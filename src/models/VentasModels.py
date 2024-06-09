@@ -1,7 +1,8 @@
-from config.db import db, ma, app
+from config.db import create_app
 from .VendedorModels import Vendedor
 from .ClienteModels import Cliente
 
+app, db, ma = create_app()
 class Ventas(db.Model):
     __tablename__ = "Tb_Ventas"
 

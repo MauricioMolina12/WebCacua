@@ -1,5 +1,6 @@
-from config.db import db, ma, app
+from config.db import create_app
 from .UsuarioModels import Usuario
+app, db, ma = create_app()
 
 
 class Cliente(db.Model):

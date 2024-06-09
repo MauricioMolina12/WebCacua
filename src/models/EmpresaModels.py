@@ -1,5 +1,7 @@
-from config.db import db, ma, app
+from config.db import create_app
 from .ModuloModels import Modulos
+
+app, db, ma = create_app()
 
 #BD Maestra
 class Empresa(db.Model):

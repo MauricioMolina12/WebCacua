@@ -1,6 +1,8 @@
-from config.db import db, ma, app
+from config.db import create_app
 from .EmpresaModels import Empresa
 from .RolsModels import Rols
+
+app, db, ma = create_app()
 
 #BD Maestra
 class Usuario(db.Model):
@@ -9,7 +11,7 @@ class Usuario(db.Model):
     id_Usuario = db.Column(db.Integer, primary_key = True, autoincrement=True, nullable=False)
     Nombre_Usuario = db.Column(db.String(50))
     Apellido_Usuario = db.Column(db.String(50))
-    Contraseña = db.Column(db.String(50))
+    Contraseña = db.Column(db.String(200))
     CC_Usuario = db.Column(db.Integer)
     Correo_Usuario = db.Column(db.String(60))
     Telefono = db.Column(db.Integer)

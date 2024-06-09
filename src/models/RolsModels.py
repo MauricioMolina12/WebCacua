@@ -1,4 +1,5 @@
-from config.db import db, ma, app
+from config.db import create_app
+app, db, ma = create_app()
 
 #BD Maestra
 class Rols(db.Model):

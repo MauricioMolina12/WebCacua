@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, json, jsonify, redirect, url_for, session
 from models.UsuarioModels import Usuario, UsersSchema
-from config.db import db, ma, app
+from config.db import create_app
+
+app, db, ma = create_app()
 
 Empresa_Contro = Blueprint('SignIn', __name__)
 

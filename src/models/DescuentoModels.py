@@ -1,6 +1,7 @@
-from config.db import db, ma, app
+from config.db import create_app
 from .DiaSemanaModels import DiaSemana
 
+app, db, ma = create_app()
 class Descuento(db.Model):
     __tablename__ = "Tb_Descuento"
 

@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, request, json, jsonify, redirect, url_for
 from models.UsuarioModels import Usuario
-from config.db import db
+from config.db import create_app
+
+app, db, ma = create_app()
 
 SignUp = Blueprint('SignUp', __name__)
 
-@SignUp.route("/login", endpoint = 'Sign_In')
+@SignUp.route("/login", endpoint = 'Sign_In', methods=['GET'])
 def Sign_In():
     return render_template('login.html')
 

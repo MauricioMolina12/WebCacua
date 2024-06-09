@@ -1,5 +1,5 @@
-from config.db import db, ma, app
-
+from config.db import create_app
+app, db, ma = create_app()
 class Categoria(db.Model):
     __tablename__ = "Tb_Categoria"
 

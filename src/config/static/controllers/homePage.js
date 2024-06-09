@@ -781,7 +781,7 @@ export function exit(buttonExitID) {
     let buttonExit = d.getElementById(buttonExitID);
 
     buttonExit.addEventListener("click", e => {
-        routesGo('../../../../src/config/templates/login.html')
+        routesGo('/logout/login')
     })
 }
 
@@ -1282,30 +1282,29 @@ export function addDisplay(buttonAddMethod) {
 }
 
 
-
 export function showUserRole() {
-    const userRole = localStorage.getItem('userRole');
+    const userRole = localStorage.getItem('UserRole');
     const userRoleSpan = document.getElementById('userRole');
 
     switch (userRole) {
-        case 'A':
+        case "1": 
             userRoleSpan.textContent = 'You are administrator' || 'Guest';
             switchTab('Home');
             showItems('Home', 'Categories');
             break;
-        case 'C':
+        case "2":
             userRoleSpan.textContent = 'You are a company' || 'Guest';
             switchTab('Empleoyees');
             showItems('Empleoyees', 'Customers', 'Supplier');
             break;
-        case 'E':
+        case "3":
             let buttonNewCustomers = d.getElementById('buttonNewCustomers');
             buttonNewCustomers.style.display = 'block'
             userRoleSpan.textContent = 'You are an employee' || 'Guest';
             switchTab('Customers');
             showItems('Customers', 'Products', 'Shop');
             break;
-        case 'cli':
+        case "4": //Cliente
             showColumn('columnBar')
             switchTab('Shopping');
             showItems('');

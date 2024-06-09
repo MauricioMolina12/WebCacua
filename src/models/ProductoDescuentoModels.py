@@ -1,6 +1,8 @@
-from config.db import db, ma, app
+from config.db import create_app
 from .ProductoModels import Producto
 from .DescuentoModels import Descuento
+
+app, db, ma = create_app()
 
 class ProductoDescuento(db.Model):
     __tablename__ = "Tb_Producto_Descuento"

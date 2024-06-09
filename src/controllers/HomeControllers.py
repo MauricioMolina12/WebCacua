@@ -6,7 +6,7 @@ index_home = Blueprint('index_home', __name__)
 def home():
     return render_template('index.html')
 
-@index_home.route("/login", endpoint = 'Sign_In')
+@index_home.route("/login", endpoint = 'Sign_In', methods=['GET'])
 def Sign_In():
     return render_template('login.html')
 
