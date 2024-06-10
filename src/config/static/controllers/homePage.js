@@ -478,14 +478,51 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
             const status = d.getElementById('status').value === 'true';
             const modules = parseInt(d.getElementById('modules').value);
 
-
             companies.push({ name, ubication, time, correo, nit, status, modules });
 
-            Swal.fire({
-                icon: 'success',
-                title: 'Company Created',
-                text: 'The new company has been created successfully.',
-            });
+            // Crear objeto con los datos del formulario
+            const newCompany = {
+                name,
+                ubication,
+                time,
+                correo,
+                nit,
+                status,
+                modules
+        };
+
+        // Enviar datos al servidor usando fetch
+        fetch('/HomeEmpresa/AnadirEmpresa', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newCompany)
+        })
+        
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Company Created',
+                    text: 'The new company has been created successfully.',
+                });
+                getData(templateID, scrollContainerID);
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.message || 'There was an error creating the company.',
+                });
+            }
+        })
+
+            // Swal.fire({
+            //     icon: 'success',
+            //     title: 'Company Created',
+            //     text: 'The new company has been created successfully.',
+            // });
 
             getData(templateID, scrollContainerID);
         }

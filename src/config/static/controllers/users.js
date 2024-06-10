@@ -16,14 +16,6 @@
         });
     
         const data = await response.json();
-        
-        // if (response.ok) {
-        //     localStorage.setItem('UserRole', data.rol)
-        // } else {
-        //     document.getElementById('credentialsIncorrects').style.display = 'block';
-        //     alert("no entro")
-        // }
-        
     
         if (response.ok) {
             if (data.rol == '1') {

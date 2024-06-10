@@ -12,14 +12,16 @@ class Vendedor(db.Model):
     Fecha_Inicio = db.Column(db.String(10))
     Fecha_Fin = db.Column(db.String(10))
     Status = db.Column(db.Integer(1)) #Inactivo 0 - Activo 1
+    id_Empresa = db.Column(db.Integer, db.ForeignKey('Tb_Empresa.id_Empresa'), nullable = False)
 
-    def __init__(self, id_Vendedor, id_Usuario, Salario, Fecha_Inicio, Fecha_Fin, Status):
+    def __init__(self, id_Vendedor, id_Usuario, Salario, Fecha_Inicio, Fecha_Fin, Status, id_Empresa):
             self.id_Vendedor = id_Vendedor
             self.id_Usuario = id_Usuario
             self.Salario = Salario
             self.Fecha_Inicio = Fecha_Inicio
             self.Fecha_Fin = Fecha_Fin
             self.Status = Status
+            self.id_Empresa = id_Empresa
             
 
 with app.app_context():
@@ -27,4 +29,4 @@ with app.app_context():
 
 class UsersSchema(ma.Schema):
     class Meta:
-        fields = ('id_Vendedor','id_Usuario','Salario', 'Fecha_Inicio', 'Fecha_Fin', 'Status')
+        fields = ('id_Vendedor','id_Usuario','Salario', 'Fecha_Inicio', 'Fecha_Fin', 'Status', 'id_Empresa')
