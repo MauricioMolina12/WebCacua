@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, json, jsonify, redirect, 
 from config.db import create_app
 from models.EmpresaModels import Empresa, EmpresaSchema
 from models.UsuarioModels import Usuario, UsersSchema
+from models.ModuloModels import Modulos
+from models.Empresa_ModuloModels import Empresa_Modulo
 from datetime import datetime
 
 app, db, ma = create_app()
@@ -53,10 +55,14 @@ def AnadirEmpresa():
 
     db.session.add(new_Usuario)
     db.session.commit()
-    
+
     #Si todo es exitoso, devuelve una respuesta JSON con success=True
     return jsonify({"success": True, "message": "Company created successfully."})
 
 @Empresa_Contro.route("/HomeUser", endpoint = 'ButtonIn')
 def ButtonIn():
     return render_template('homePage.html')
+
+@Empresa_Contro.route("/HomeEmpresa/AggModulos")
+def AñadirModulos():
+    pass

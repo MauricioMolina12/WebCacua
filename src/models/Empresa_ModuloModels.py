@@ -1,4 +1,6 @@
 from config.db import create_app
+from .EmpresaModels import Empresa
+from .ModuloModels import Modulos
 app, db, ma = create_app()
 
 class Empresa_Modulo(db.Model):
