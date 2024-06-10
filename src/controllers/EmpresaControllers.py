@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, redirect, url_for, session
+from flask import Blueprint, render_template, request,jsonify, redirect, url_for, session
 from config.db import create_app
 from models.EmpresaModels import Empresa, EmpresaSchema
 from models.UsuarioModels import Usuario, UsersSchema
@@ -63,4 +63,4 @@ def ButtonIn():
 
 @Empresa_Contro.route("/HomeEmpresa/AggModulos")
 def AñadirModulos():
-    pass
+    pass 
