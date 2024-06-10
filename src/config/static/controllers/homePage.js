@@ -96,7 +96,7 @@ const empleoyees = [
 
 ]
 const empleoyeesShop = [
-    
+
     {
         name: empleoyees.name,
         code: "#84-55877",
@@ -288,7 +288,7 @@ export function getShop(templateID, scrollContainerID) {
         let clone = template.cloneNode(true);
         clone.querySelector('#card__code').textContent = empleoyee.code;
         clone.querySelector('#card__selling').textContent = empleoyee.selligP;
-        empleoyees.forEach(el=>{
+        empleoyees.forEach(el => {
             clone.querySelector('#card__empleoyee').textContent = el.name;
         })
         clone.querySelector('#card__sale').textContent = empleoyee.sale;
@@ -471,7 +471,6 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
     }).then((result) => {
         if (result.isConfirmed) {
             const name = d.getElementById('name').value;
-            const ubication = d.getElementById('ubication').value;
             const time = d.getElementById('time').value;
             const correo = d.getElementById('correo').value;
             const nit = d.getElementById('nit').value;
@@ -483,40 +482,39 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
             // Crear objeto con los datos del formulario
             const newCompany = {
                 name,
-                ubication,
                 time,
                 correo,
                 nit,
                 status,
                 modules
-        };
+            };
 
-        // Enviar datos al servidor usando fetch
-        fetch('/HomeEmpresa/AnadirEmpresa', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newCompany)
-        })
-        
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Company Created',
-                    text: 'The new company has been created successfully.',
-                });
-                getData(templateID, scrollContainerID);
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: data.message || 'There was an error creating the company.',
-                });
-            }
-        })
+            // Enviar datos al servidor usando fetch
+            fetch('/HomeEmpresa/AnadirEmpresa', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({name, time, correo, nit, status, modules})
+            })
+
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Company Created',
+                            text: 'The new company has been created successfully.',
+                        });
+                        getData(templateID, scrollContainerID);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message || 'There was an error creating the company.',
+                        });
+                    }
+                })
 
             // Swal.fire({
             //     icon: 'success',
@@ -1324,7 +1322,7 @@ export function showUserRole() {
     const userRoleSpan = document.getElementById('userRole');
 
     switch (userRole) {
-        case "1": 
+        case "1":
             userRoleSpan.textContent = 'You are administrator' || 'Guest';
             switchTab('Home');
             showItems('Home', 'Categories');

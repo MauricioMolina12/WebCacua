@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, json, jsonify, redirect, url_for, session
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for, session
 from config.db import create_app
 from models.EmpresaModels import Empresa, EmpresaSchema
 from models.UsuarioModels import Usuario, UsersSchema
@@ -22,7 +22,7 @@ def AnadirEmpresa():
     fecha_actual_str = fecha_actual.strftime('%Y-%m-%d')
 
     data = request.get_json()
-
+    print(data)
     Nombre = data.get('name')
     Fecha_Final = data.get('time')
     Correo = data.get('correo')
@@ -44,8 +44,6 @@ def AnadirEmpresa():
     new_Usuario = Usuario(
         id_Usuario = None
     )
-
-    print(new_empresa)
     
     # Añadir la nueva compañía a la sesión y guardar en la base de datos
     db.session.add(new_empresa)
