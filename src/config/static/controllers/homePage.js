@@ -474,6 +474,7 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
             const time = d.getElementById('time').value;
             const correo = d.getElementById('correo').value;
             const nit = d.getElementById('nit').value;
+            const Ubication = d.getElementById('ubication')
             const status = d.getElementById('status').value === 'true';
             const modules = parseInt(d.getElementById('modules').value);
 
@@ -488,7 +489,7 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
             }
 
             // Validar el formato de fecha (DD/MM/AAAA)
-            const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
+            const datePattern = /^\d{2}\-\d{2}\-\d{4}$/;
             if (!datePattern.test(time)) {
                 Swal.fire({
                     icon: 'error',
@@ -504,7 +505,7 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({name, time, correo, nit, status, modules})
+                body: JSON.stringify({name, time, correo, nit, Ubication,status, modules})
 
 
             })
