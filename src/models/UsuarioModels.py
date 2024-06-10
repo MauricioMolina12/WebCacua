@@ -16,7 +16,7 @@ class Usuario(db.Model):
     Correo_Usuario = db.Column(db.String(60))
     Telefono = db.Column(db.Integer)
     Rol = db.Column(db.Integer, db.ForeignKey('Tb_Rol.id_Rol'))
-    Status = db.Column(db.Integer) # 1 - Activo / 0 - Inactivo
+    Status = db.Column(db.Boolean)
     
 
     def __init__(self, id_Usuario, Nombre_Usuario, Contraseña,CC_Usuario, Correo_Usuario,Telefono, Rol, Status):

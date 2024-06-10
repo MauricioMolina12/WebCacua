@@ -477,17 +477,26 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
             const status = d.getElementById('status').value === 'true';
             const modules = parseInt(d.getElementById('modules').value);
 
-            companies.push({ name, ubication, time, correo, nit, status, modules });
+            // Validar que los campos no estén vacíos
+            if (!name || !time || !correo || !nit || isNaN(modules)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'All fields are required.',
+                });
+                return;
+            }
 
-            // Crear objeto con los datos del formulario
-            const newCompany = {
-                name,
-                time,
-                correo,
-                nit,
-                status,
-                modules
-            };
+            // Validar el formato de fecha (DD/MM/AAAA)
+            const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
+            if (!datePattern.test(time)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Time must be in the format DD/MM/AAAA.',
+                });
+                return;
+            }
 
             // Enviar datos al servidor usando fetch
             fetch('/HomeEmpresa/AnadirEmpresa', {
@@ -496,9 +505,10 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({name, time, correo, nit, status, modules})
-            })
 
-                .then(response => response.json())
+
+            })
+            .then(response => response.json())
                 .then(data => {
                     if (data.success) {
                         Swal.fire({
@@ -506,6 +516,7 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
                             title: 'Company Created',
                             text: 'The new company has been created successfully.',
                         });
+                        companies.push({ name, ubication, time, correo, nit, status, modules });
                         getData(templateID, scrollContainerID);
                     } else {
                         Swal.fire({
@@ -515,13 +526,6 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
                         });
                     }
                 })
-
-            // Swal.fire({
-            //     icon: 'success',
-            //     title: 'Company Created',
-            //     text: 'The new company has been created successfully.',
-            // });
-
             getData(templateID, scrollContainerID);
         }
     });
@@ -848,52 +852,109 @@ export function switchTab(tab) {
 //Funciones para buscar datos
 
 export function searchCompany(inputId) {
+    //Gio
     const input = document.getElementById(inputId);
     const scrollContainer = document.getElementById('scrollContainer');
     const template = document.getElementById('template-card');
 
     input.addEventListener("input", () => {
         const valueInput = input.value.toLowerCase().trim();
-        const filteredCompanies = companies.filter(company => company.name.toLowerCase().includes(valueInput));
 
-        if (filteredCompanies.length > 0) {
-            scrollContainer.classList.remove('flex');
-            const fragment = document.createDocumentFragment();
-            scrollContainer.innerHTML = "";
+        if (valueInput) {
+            fetch(`/HomeEmpresa/Search?query=${encodeURIComponent(valueInput)}`)
+                .then(response => response.json())
+                .then(filteredCompanies => {
+                    if (filteredCompanies.length > 0) {
+                        scrollContainer.classList.remove('flex');
+                        const fragment = document.createDocumentFragment();
+                        scrollContainer.innerHTML = "";
 
-            filteredCompanies.forEach(company => {
-                let clone = template.content.cloneNode(true);
-                clone.querySelector('#card__name').textContent = company.name;
-                clone.querySelector('#card__ubication').textContent = company.ubication;
-                clone.querySelector('#card__time').textContent = company.time;
-                clone.querySelector('#card__email').textContent = company.correo;
-                clone.querySelector('#card__nit').textContent = company.nit;
-                clone.querySelector('#card__modules').textContent = company.modules;
+                        filteredCompanies.forEach(company => {
+                            let clone = template.content.cloneNode(true);
+                            clone.querySelector('#card__name').textContent = company.name;
+                            clone.querySelector('#card__ubication').textContent = company.ubication;
+                            clone.querySelector('#card__time').textContent = company.time;
+                            clone.querySelector('#card__email').textContent = company.correo;
+                            clone.querySelector('#card__nit').textContent = company.nit;
+                            clone.querySelector('#card__modules').textContent = company.modules;
 
-                let activeElement = clone.querySelector('#card__active');
-                if (company.status == true) {
-                    activeElement.innerHTML = 'Active' + '<i class="fa-solid fa-check checkGood"></i>';
-                } else {
-                    activeElement.innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
-                }
+                            let activeElement = clone.querySelector('#card__active');
+                            if (company.status) {
+                                activeElement.innerHTML = 'Active' + '<i class="fa-solid fa-check checkGood"></i>';
+                            } else {
+                                activeElement.innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
+                            }
 
-                fragment.appendChild(clone);
-            });
+                            fragment.appendChild(clone);
+                        });
 
-            scrollContainer.appendChild(fragment);
+                        scrollContainer.appendChild(fragment);
+                    } else {
+                        const contentNot = `
+                            <img class="imgPlanta" src="../static/assets/animationPlanta.png">
+                            <span class="text">No hay coincidencias</span>
+                        `;
+                        scrollContainer.classList.add('flex');
+                        scrollContainer.innerHTML = contentNot;
+                        scrollContainer.querySelector('.imgPlanta').classList.add('imgPlanta');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching companies:', error);
+                });
         } else {
-            const contentNot = `
-                  '<img class="imgPlanta" src="../static/assets/animationPlanta.png">',
-                  '<span class="text">No hay coincidencias</span>'
-                `
-            scrollContainer.classList.add('flex');
-            scrollContainer.innerHTML = contentNot;
-            scrollContainer.querySelector('.imgPlanta').classList.add('imgPlanta');
+            scrollContainer.innerHTML = '';
         }
-
-
-        ;
     });
+
+
+    //Mauro 
+    // const input = document.getElementById(inputId);
+    // const scrollContainer = document.getElementById('scrollContainer');
+    // const template = document.getElementById('template-card');
+
+    // input.addEventListener("input", () => {
+    //     const valueInput = input.value.toLowerCase().trim();
+    //     const filteredCompanies = companies.filter(company => company.name.toLowerCase().includes(valueInput));
+
+    //     if (filteredCompanies.length > 0) {
+    //         scrollContainer.classList.remove('flex');
+    //         const fragment = document.createDocumentFragment();
+    //         scrollContainer.innerHTML = "";
+
+    //         filteredCompanies.forEach(company => {
+    //             let clone = template.content.cloneNode(true);
+    //             clone.querySelector('#card__name').textContent = company.name;
+    //             clone.querySelector('#card__ubication').textContent = company.ubication;
+    //             clone.querySelector('#card__time').textContent = company.time;
+    //             clone.querySelector('#card__email').textContent = company.correo;
+    //             clone.querySelector('#card__nit').textContent = company.nit;
+    //             clone.querySelector('#card__modules').textContent = company.modules;
+
+    //             let activeElement = clone.querySelector('#card__active');
+    //             if (company.status == true) {
+    //                 activeElement.innerHTML = 'Active' + '<i class="fa-solid fa-check checkGood"></i>';
+    //             } else {
+    //                 activeElement.innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
+    //             }
+
+    //             fragment.appendChild(clone);
+    //         });
+
+    //         scrollContainer.appendChild(fragment);
+    //     } else {
+    //         const contentNot = `
+    //               '<img class="imgPlanta" src="../static/assets/animationPlanta.png">',
+    //               '<span class="text">No hay coincidencias</span>'
+    //             `
+    //         scrollContainer.classList.add('flex');
+    //         scrollContainer.innerHTML = contentNot;
+    //         scrollContainer.querySelector('.imgPlanta').classList.add('imgPlanta');
+    //     }
+
+
+    //     ;
+    // });
 }
 
 export function searchCompany2(inputId) {

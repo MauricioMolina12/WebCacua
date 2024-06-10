@@ -1,6 +1,8 @@
 from controllers.HomeControllers import index_home
 from controllers.SignInControllers import SignIn
 from controllers.SignUpControllers import SignUp
+from controllers.AdminControllers import AdminControl
+from controllers.EmpresaControllers import EmpresaControl
 from config.db import create_app
 
 
@@ -11,6 +13,8 @@ app, db, ma = create_app()
 app.register_blueprint(index_home)
 app.register_blueprint(SignIn)
 app.register_blueprint(SignUp)
+app.register_blueprint(AdminControl)
+app.register_blueprint(EmpresaControl)
 
 if __name__ == "__main__":
     # Ejecutar la aplicación Flask

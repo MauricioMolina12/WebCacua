@@ -18,12 +18,8 @@
         const data = await response.json();
     
         if (response.ok) {
-            if (data.rol == '1') {
-                localStorage.setItem('UserRole', data.rol)
-                window.location.href = '/HomeUser';
-            } else if (data.rol == '2') {
-                window.location.href = '/user/dashboard';
-            }
+            localStorage.setItem('UserRole', data.rol);
+            window.location.href = '/HomeUser';
         } else {
             document.getElementById('credentialsIncorrects').style.display = 'block';
         }
