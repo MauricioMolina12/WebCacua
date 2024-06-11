@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for, session
 from config.db import create_app
-from models.EmpresaModels import Empresa, EmpresaSchema
+from models.EmpresaModels import Empresa, EmpresaSchema, Empresa_Schema
 from models.UsuarioModels import Usuario
 from models.ModuloModels import Modulos
 from models.Empresa_ModuloModels import Empresa_Modulo
@@ -12,10 +12,13 @@ AdminControl = Blueprint('AdminControl', __name__)
 
 @AdminControl.route("/HomeEmpresa/Empresas", methods=["GET"])
 def EmpresasRegistradas():
-    empresas = Empresa.query.all()
-    empresa_schema = EmpresaSchema(many=True)
-    result = empresa_schema.dump(empresas)
-    return jsonify(result)
+    try:
+        empresas = Empresa.query.all()
+        empresa_schema = EmpresaSchema(many=True)
+        result = empresa_schema.dump(empresas)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
 
 
 @AdminControl.route("/HomeEmpresa/Search", endpoint='', methods=["GET"])
@@ -42,8 +45,7 @@ def BuscarEmpresa():
 def AnadirEmpresa():
 
     fecha_actual = datetime.now()
-    fecha_actual_str = fecha_actual.strftime('%Y-%m-%d')
-    print("Fecha actual:", fecha_actual_str)
+    fecha_actual_str = fecha_actual.strftime('%Y/%m/%d')
 
     data = request.get_json()
     print("Datos recibidos:", data)
@@ -51,7 +53,7 @@ def AnadirEmpresa():
     Fecha_Final = data.get('time')
     Correo = data.get('correo')
     nit = data.get('nit')
-    ubicacion = data.get('Ubication')
+    ubicacion = data.get('ubication')
     status = data.get('status')
     modules = data.get('modules')
 
@@ -59,7 +61,7 @@ def AnadirEmpresa():
         id_Empresa=None,  # SQLAlchemy manejará el autoincremento
         Nombre_Empresa=Nombre,
         Nic_Empresa=nit,
-        Ubicacion = ubicacion,
+        Ubicacion_Empresa = ubicacion,
         Correo_Empresa=Correo,
         Fecha_Inicio=fecha_actual_str,
         Fecha_Final=Fecha_Final,
