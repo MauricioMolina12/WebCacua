@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, jsonify, redirect, url_fo
 from config.db import create_app
 from models.EmpresaModels import Empresa, EmpresaSchema, Empresa_Schema
 from models.UsuarioModels import Usuario
-from models.ModuloModels import Modulos
+from models.ModuloModels import Modulos, ModuloSchema_2
 from models.Empresa_ModuloModels import Empresa_Modulo
 from datetime import datetime
 
@@ -95,7 +95,16 @@ def AnadirEmpresa():
         db.session.rollback()
         return jsonify({"success": False, "message": "There was an error creating the company."})
 
+@AdminControl.route("/HomeEmpresas/Modulos") #Visualiza los modulos creados 
+def ModulosRegistrados():
+    try:
+        ModulosEmpresa = Modulos.query.all()
+        Modulo_schema = ModuloSchema_2(many=True)
+        result = Modulo_schema.dump(ModulosEmpresa)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
 
 @AdminControl.route("/HomeEmpresa/AggModulos")
-def AñadirModulos():
+def AñadirModulosEmpresa():
     pass

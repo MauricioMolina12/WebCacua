@@ -17,6 +17,10 @@ class Modulos(db.Model):
 with app.app_context():
     db.create_all()
 
-class UsersSchema(ma.Schema):
+class ModuloSchema(ma.Schema):
     class Meta:
         fields = ('id_Modulo', 'Nombre_Modulo', 'Descripcion')
+
+class ModuloSchema_2(ma.Schema):
+    class Meta:
+        fields = ('id_Modulo', 'Nombre_Modulo')

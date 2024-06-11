@@ -1127,42 +1127,102 @@ export function searchProducts(inputId) {
     });
 }
 
-
+//Gio
 export function addModule(buttonAddMethod) {
-    const buttonsModule = d.querySelectorAll(buttonAddMethod);
+    const buttonsModule = document.querySelectorAll(buttonAddMethod);
 
     buttonsModule.forEach(button => {
-        button.addEventListener("click", e => {
-            const form = `
+        button.addEventListener("click", async e => {
+            try {
+                // Fetch the modules from the server
+                const response = await fetch("/HomeEmpresas/Modulos");
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                const modulos = await response.json();
+
+                // Create the options for the select element
+                const selectOptions = modulos.map(modulo => `<option value="${modulo.id}">${modulo.Nombre_Modulo}</option>`).join('');
+
+                const form = `
                     <div class="flex" style="height: auto">
                         <select style="padding: 15px">
-                            <option>Modulo 1</option>
-                            <option>Modulo 2</option>
-                            <option>Modulo 3</option>
-                            <option>Modulo 4</option>
+                            ${selectOptions}
                         </select>
                     </div>
                 `;
 
-            Swal.fire({
-                title: 'Add new module',
-                html: form,
-                showCancelButton: true,
-                confirmButtonText: 'Add module',
-                cancelButtonText: 'Cancel',
-                showLoaderOnConfirm: true,
-                preConfirm: () => {
-                    const selectedCompanyIndex = 0;
-                    const selectedCompany = companies[selectedCompanyIndex];
+                Swal.fire({
+                    title: 'Add new module',
+                    html: form,
+                    showCancelButton: true,
+                    confirmButtonText: 'Add module',
+                    cancelButtonText: 'Cancel',
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        const selectElement = document.querySelector('select');
+                        const selectedModuleId = selectElement.value;
 
-                    selectedCompany.modules++;
+                        // Example action with the selected module ID
+                        console.log("Selected Module ID:", selectedModuleId);
 
-                    getCompanies();
-                }
-            });
+                        // Assuming companies is a global variable or accessible in this scope
+                        const selectedCompanyIndex = 0; // Change this as per your logic
+                        const selectedCompany = companies[selectedCompanyIndex];
+
+                        selectedCompany.modules++;
+
+                        getCompanies();
+                    }
+                });
+            } catch (error) {
+                console.error("Error fetching modules:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to load modules. Please try again later.'
+                });
+            }
         });
     });
 }
+
+// //Mauro
+// export function addModule(buttonAddMethod) {
+//     const buttonsModule = d.querySelectorAll(buttonAddMethod);
+
+//     buttonsModule.forEach(button => {
+//         button.addEventListener("click", e => {
+//             const form = `
+//                     <div class="flex" style="height: auto">
+//                         <select style="padding: 15px">
+//                             <option>Modulo 1</option>
+//                             <option>Modulo 2</option>
+//                             <option>Modulo 3</option>
+//                             <option>Modulo 4</option>
+//                         </select>
+//                     </div>
+//                 `;
+
+//             Swal.fire({
+//                 title: 'Add new module',
+//                 html: form,
+//                 showCancelButton: true,
+//                 confirmButtonText: 'Add module',
+//                 cancelButtonText: 'Cancel',
+//                 showLoaderOnConfirm: true,
+//                 preConfirm: () => {
+//                     const selectedCompanyIndex = 0;
+//                     const selectedCompany = companies[selectedCompanyIndex];
+
+//                     selectedCompany.modules++;
+
+//                     getCompanies();
+//                 }
+//             });
+//         });
+//     });
+// }
 
 
 export function addProfit(buttonAddMethod) {
