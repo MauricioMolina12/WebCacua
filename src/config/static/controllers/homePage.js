@@ -490,12 +490,12 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
             const time = d.getElementById('time').value;
             const correo = d.getElementById('correo').value;
             const nit = d.getElementById('nit').value;
-            const Ubication = d.getElementById('ubication')
+            const ubication = d.getElementById('ubication').value;
             const status = d.getElementById('status').value === 'true';
             const modules = parseInt(d.getElementById('modules').value);
 
             // Validar que los campos no estén vacíos
-            if (!name || !time || !correo || !nit || isNaN(modules)) {
+            if (!name || !time || !correo || !nit || !ubication || isNaN(modules)) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
@@ -521,7 +521,7 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, time, correo, nit, Ubication, status, modules })
+                body: JSON.stringify({name, time, correo, nit, ubication, status, modules})
 
 
             })
