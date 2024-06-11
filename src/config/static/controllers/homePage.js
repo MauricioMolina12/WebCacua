@@ -213,51 +213,47 @@ const suppliers = [
 
 export async function getData(templateID, scrollContainerID) {
     try {
-
         let template = document.getElementById(templateID).content.cloneNode(true);
         let fragment = document.createDocumentFragment();
         let scrollContainer = document.getElementById(scrollContainerID);
+
         scrollContainer.innerHTML = '';
 
-
-        fetch('/HomeEmpresa/Empresas')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        fetch('/HomeEmpresa/Empresas', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then((response) => response.json())
+        .then(data => {
+            data.forEach(company => {
+                let clone = document.importNode(template,true);
+                clone.querySelector('#card__name').textContent = company.Nombre_Empresa;
+                clone.querySelector('#card__ubication').textContent = company.Ubicacion_Empresa; //ESTO DEJALO ASÍ
+                clone.querySelector('#card__time').textContent = company.Fecha_Inicio;
+                clone.querySelector('#card__email').textContent = company.Correo_Empresa;
+                clone.querySelector('#card__nit').textContent = company.Nic_Empresa;
+                clone.querySelector('#card__modules').textContent = company.Modulo;
+    
+                let activeElement = clone.querySelector('#card__active');
+                if (company.Status) {
+                    activeElement.innerHTML = 'Active' + '<i class="fa-solid fa-square-check checkGood"></i>';
+                } else {
+                    activeElement.innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
                 }
-                return response.json();
-            })
-            .then(companies => {
-                companies.forEach(company => {
-                    let clone = template.cloneNode(true);
-                    clone.querySelector('#card__name').textContent = company.userId;
-                    clone.querySelector('#card__ubication').textContent = company.id;
-                    clone.querySelector('#card__time').textContent = company.title;
-                    clone.querySelector('#card__email').textContent = company.completed;
-                    clone.querySelector('#card__nit').textContent = company.nit;
-                    clone.querySelector('#card__modules').textContent = company.modules;
-
-                    let activeElement = clone.querySelector('#card__active');
-                    if (company.status == true) {
-                        activeElement.innerHTML = 'Active' + '<i class="fa-solid fa-square-check checkGood"></i>';
-                    } else {
-                        activeElement.innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
-                    }
-
-                    fragment.appendChild(clone);
-                });
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
+    
+                fragment.appendChild(clone);
             });
-
-
-        scrollContainer.appendChild(fragment);
-
+    
+            scrollContainer.appendChild(fragment);
+        })
+        .catch(error => console.error('Error al obtener los datos:', error));
     } catch (error) {
         console.error('Error al obtener los datos:', error);
     }
 }
+
 
 
 export function getEmpleoyees(templateIDEmpleoyees, scrollContainerIDEmpleoyees) {
@@ -490,12 +486,12 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
             const time = d.getElementById('time').value;
             const correo = d.getElementById('correo').value;
             const nit = d.getElementById('nit').value;
-            const ubication = d.getElementById('ubication').value;
+            const Ubication = d.getElementById('ubication')
             const status = d.getElementById('status').value === 'true';
             const modules = parseInt(d.getElementById('modules').value);
 
             // Validar que los campos no estén vacíos
-            if (!name || !time || !correo || !nit || !ubication || isNaN(modules)) {
+            if (!name || !time || !correo || !nit || isNaN(modules)) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
@@ -521,11 +517,11 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({name, time, correo, nit, ubication, status, modules})
+                body: JSON.stringify({name, time, correo, nit, Ubication,status, modules})
 
 
             })
-                .then(response => response.json())
+            .then(response => response.json())
                 .then(data => {
                     if (data.success) {
                         Swal.fire({
