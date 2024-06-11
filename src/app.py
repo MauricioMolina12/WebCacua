@@ -14,7 +14,7 @@ app.register_blueprint(index_home)
 app.register_blueprint(SignIn)
 app.register_blueprint(SignUp)
 app.register_blueprint(AdminControl)
-app.register_blueprint(EmpresaControl)
+#app.register_blueprint(EmpresaControl)
 
 if __name__ == "__main__":
     # Ejecutar la aplicación Flask

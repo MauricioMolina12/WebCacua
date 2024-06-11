@@ -211,38 +211,54 @@ const suppliers = [
 
 // Funciones para obtener datos
 
-export function getData(templateID, scrollContainerID) {
-    let template = document.getElementById(templateID).content.cloneNode(true);
-    let fragment = document.createDocumentFragment();
-    let scrollContainer = document.getElementById(scrollContainerID);
+export async function getData(templateID, scrollContainerID) {
+    try {
 
-    scrollContainer.innerHTML = '';
-
-
-    companies.forEach(company => {
-        let clone = template.cloneNode(true);
-        clone.querySelector('#card__name').textContent = company.name;
-        clone.querySelector('#card__ubication').textContent = company.ubication;
-        clone.querySelector('#card__time').textContent = company.time;
-        clone.querySelector('#card__email').textContent = company.correo;
-        clone.querySelector('#card__nit').textContent = company.nit;
-        clone.querySelector('#card__modules').textContent = company.modules;
-
-        let activeElement = clone.querySelector('#card__active');
-        if (company.status == true) {
-            activeElement.innerHTML = 'Active' + '<i class="fa-solid fa-square-check checkGood"></i>';
-        } else {
-            activeElement.innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
-        }
-
-        fragment.appendChild(clone);
-    });
-
-    scrollContainer.appendChild(fragment);
+        let template = document.getElementById(templateID).content.cloneNode(true);
+        let fragment = document.createDocumentFragment();
+        let scrollContainer = document.getElementById(scrollContainerID);
+        scrollContainer.innerHTML = '';
 
 
-    return scrollContainer;
+        fetch('/HomeEmpresa/Empresas')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(companies => {
+                companies.forEach(company => {
+                    let clone = template.cloneNode(true);
+                    clone.querySelector('#card__name').textContent = company.userId;
+                    clone.querySelector('#card__ubication').textContent = company.id;
+                    clone.querySelector('#card__time').textContent = company.title;
+                    clone.querySelector('#card__email').textContent = company.completed;
+                    clone.querySelector('#card__nit').textContent = company.nit;
+                    clone.querySelector('#card__modules').textContent = company.modules;
+
+                    let activeElement = clone.querySelector('#card__active');
+                    if (company.status == true) {
+                        activeElement.innerHTML = 'Active' + '<i class="fa-solid fa-square-check checkGood"></i>';
+                    } else {
+                        activeElement.innerHTML = 'Inactive' + '<i class="fa-solid fa-circle-xmark checkFalse"></i>';
+                    }
+
+                    fragment.appendChild(clone);
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
+
+        scrollContainer.appendChild(fragment);
+
+    } catch (error) {
+        console.error('Error al obtener los datos:', error);
+    }
 }
+
 
 export function getEmpleoyees(templateIDEmpleoyees, scrollContainerIDEmpleoyees) {
 
@@ -474,6 +490,7 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
             const time = d.getElementById('time').value;
             const correo = d.getElementById('correo').value;
             const nit = d.getElementById('nit').value;
+            const Ubication = d.getElementById('ubication')
             const status = d.getElementById('status').value === 'true';
             const modules = parseInt(d.getElementById('modules').value);
 
@@ -488,7 +505,7 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
             }
 
             // Validar el formato de fecha (DD/MM/AAAA)
-            const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
+            const datePattern = /^\d{2}\-\d{2}\-\d{4}$/;
             if (!datePattern.test(time)) {
                 Swal.fire({
                     icon: 'error',
@@ -504,11 +521,11 @@ export function showNewCompanyForm(templateID, scrollContainerID) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({name, time, correo, nit, status, modules})
+                body: JSON.stringify({ name, time, correo, nit, Ubication, status, modules })
 
 
             })
-            .then(response => response.json())
+                .then(response => response.json())
                 .then(data => {
                     if (data.success) {
                         Swal.fire({

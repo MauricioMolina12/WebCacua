@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for, session
 from config.db import create_app
-from models.EmpresaModels import Empresa
+from models.EmpresaModels import Empresa, EmpresaSchema
 from models.UsuarioModels import Usuario
 from models.ModuloModels import Modulos
 from models.Empresa_ModuloModels import Empresa_Modulo
@@ -9,6 +9,14 @@ from datetime import datetime
 app, db, ma = create_app()
 
 AdminControl = Blueprint('AdminControl', __name__)
+
+@AdminControl.route("/HomeEmpresa/Empresas", methods=["GET"])
+def EmpresasRegistradas():
+    empresas = Empresa.query.all()
+    empresa_schema = EmpresaSchema(many=True)
+    result = empresa_schema.dump(empresas)
+    return jsonify(result)
+
 
 @AdminControl.route("/HomeEmpresa/Search", endpoint='', methods=["GET"])
 def BuscarEmpresa():
@@ -43,6 +51,7 @@ def AnadirEmpresa():
     Fecha_Final = data.get('time')
     Correo = data.get('correo')
     nit = data.get('nit')
+    ubicacion = data.get('Ubication')
     status = data.get('status')
     modules = data.get('modules')
 
@@ -50,6 +59,7 @@ def AnadirEmpresa():
         id_Empresa=None,  # SQLAlchemy manejará el autoincremento
         Nombre_Empresa=Nombre,
         Nic_Empresa=nit,
+        Ubicacion = ubicacion,
         Correo_Empresa=Correo,
         Fecha_Inicio=fecha_actual_str,
         Fecha_Final=Fecha_Final,
